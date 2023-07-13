@@ -1,11 +1,4 @@
 import 'package:athens/constants/theme_model.dart';
-import 'package:conscious/model/challenge/challenge.dart';
-import 'package:conscious/service/challenge_proxy.dart';
-import 'package:conscious/service/trivia_proxy.dart';
-import 'package:conscious/view/challenge/challenge_page.dart';
-import 'package:conscious/view/trivia/trivia_page.dart';
-import 'package:conscious/view/utils/clickable.dart';
-import 'package:conscious/view/utils/routing.dart';
 import 'package:flutter/material.dart';
 
 class DailyChallenge extends StatelessWidget {

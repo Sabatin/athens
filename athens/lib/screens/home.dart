@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../constants/theme_model.dart';
 
-
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -57,7 +56,8 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-
+          //DailyTrivia(),
+          //DailyChallenge(),
           /* ConsciousClickable(
             onTap: () => Routing.slideToPage(context, Wiki()),
             child: Card(
