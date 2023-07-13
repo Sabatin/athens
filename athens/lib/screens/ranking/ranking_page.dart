@@ -1,7 +1,10 @@
+import 'package:athens/constants/theme_model.dart';
+import 'package:athens/model/user.dart';
+import 'package:athens/screens/utils/loading_indicator.dart';
+import 'package:athens/service/skeleton/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../constants/theme_model.dart';
 
 class RankingPage extends StatelessWidget {
   RankingPage({Key? key}) : super(key: key);
@@ -19,31 +22,40 @@ class RankingPage extends StatelessWidget {
           onRefresh: () async => print('Ciao'),
           child: ScrollConfiguration(
             behavior: ScrollBehavior(),
-            child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: 11,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index == 0)
-                    return Container();
-                  else {
-                    final int i = index - 1;
-                    if (i == 0) //Primo posto
-                      return _firstTile(context);
-                    else if (i == 1) //Secondo posto
-                      return _secondTile(context, i);
-                    else if (i == 2) // Terzo posto
-                      return _thirdTile(context, i);
-                    else
-                      return _rankingTile(context, i);
-                  }
-                }),
+            child: FutureBuilder<List<FoodUser>>(
+              future: Database.getTopUsers(),
+              builder: (context, users) {
+                if (users.hasData) {
+                  return ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: users.requireData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == 0)
+                        return Container();
+                      else {
+                        final int i = index - 1;
+                        if (i == 0) //Primo posto
+                          return _firstTile(context, users.requireData[index]);
+                        else if (i == 1) //Secondo posto
+                          return _secondTile(context, i, users.requireData[index]);
+                        else if (i == 2) // Terzo posto
+                          return _thirdTile(context, i, users.requireData[index]);
+                        else
+                          return _rankingTile(context, i, users.requireData[index]);
+                      }
+                    },
+                  );
+                }
+                return LoadingIndicator();
+              }
+            ),
           ),
         );
       },
     );
   }
 
-  Widget _firstTile(BuildContext context) {
+  Widget _firstTile(BuildContext context, FoodUser user) {
     final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -63,7 +75,7 @@ class RankingPage extends StatelessWidget {
               width: width - 65,
               decoration: BoxDecoration(
                   gradient: theme.gradient, borderRadius: containerRadius),
-              child: _podioTiles(Colors.white),
+              child: _podioTiles(user, Colors.white),
             ),
           ),
         ],
@@ -71,7 +83,7 @@ class RankingPage extends StatelessWidget {
     );
   }
 
-  Widget _secondTile(BuildContext context, int i) {
+  Widget _secondTile(BuildContext context, int i, FoodUser user) {
     final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -97,7 +109,7 @@ class RankingPage extends StatelessWidget {
               decoration: BoxDecoration(
                   gradient: theme.gradientList[2],
                   borderRadius: containerRadius),
-              child: _podioTiles(Colors.white),
+              child: _podioTiles(user, Colors.white),
             ),
           ),
         ],
@@ -105,7 +117,7 @@ class RankingPage extends StatelessWidget {
     );
   }
 
-  Widget _thirdTile(BuildContext context, int i) {
+  Widget _thirdTile(BuildContext context, int i, FoodUser user) {
     final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -131,7 +143,7 @@ class RankingPage extends StatelessWidget {
               decoration: BoxDecoration(
                   gradient: theme.gradientList[1],
                   borderRadius: containerRadius),
-              child: _podioTiles(Colors.white),
+              child: _podioTiles(user, Colors.white),
             ),
           ),
         ],
@@ -139,7 +151,7 @@ class RankingPage extends StatelessWidget {
     );
   }
 
-  Widget _rankingTile(BuildContext context, int i) {
+  Widget _rankingTile(BuildContext context, int i, FoodUser user) {
     final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -160,7 +172,7 @@ class RankingPage extends StatelessWidget {
               height: cardHeight,
               width: width - 75,
               decoration: BoxDecoration(borderRadius: containerRadius),
-              child: _podioTiles(),
+              child: _podioTiles(user),
             ),
           ),
         ],
@@ -168,11 +180,11 @@ class RankingPage extends StatelessWidget {
     );
   }
 
-  Widget _podioTiles([Color? color]) {
+  Widget _podioTiles(FoodUser user, [Color? color]) {
     return ListTile(
-      title: Text('  Mario Rossi',
+      title: Text('  ' + user.fullName,
           style: TextStyle(color: color, fontWeight: FontWeight.w500)),
-      trailing: Text('200',
+      trailing: Text(user.points.toString(),
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.w500, color: color)),
     );

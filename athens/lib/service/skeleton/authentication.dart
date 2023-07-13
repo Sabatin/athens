@@ -6,10 +6,11 @@ import 'database.dart';
 
 class Authentication {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  static final user = FoodUser();
 
   Future<void> signIn(String email, String password) async {
     await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    await FoodUser.init();
+    await user.init();
   }
 
   Future<void> signInAnonymously() async {
@@ -21,7 +22,7 @@ class Authentication {
     if (credential.user == null) {
       throw(400);
     }
-    FoodUser.create(fullName);
+    await user.create(fullName);
     Blockchain.generatePrivateKey(password);
   }
 
