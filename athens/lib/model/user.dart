@@ -2,11 +2,17 @@ import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/database.dart';
 
 class FoodUser {
-  static String fullName = '';
-  static String publicKey = '';
-  static int points = 0;
+  String fullName = '';
+  String publicKey = '';
+  int points = 0;
 
-  static Future<void> init() async {
+  FoodUser();
+  FoodUser.fromMap(Map<String, dynamic> userMap) {
+    fullName = userMap['full_name'];
+    points = userMap['points'];
+  }
+
+  Future<void> init() async {
     try {
       if (Authentication.isLoggedIn()) {
         final userData = await Database.get('users', Authentication.getAuthId());
@@ -19,9 +25,9 @@ class FoodUser {
     } catch(ignored) {}
   }
 
-  static Future<void> create(String name) async {
+  Future<void> create(String name) async {
     await Database.post('users', Authentication.getAuthId(), {
-      'full_name': fullName,
+      'full_name': name,
       'points': 0
     });
     fullName = name;

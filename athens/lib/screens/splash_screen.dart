@@ -14,12 +14,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> start() async {
-    await FoodUser.init();
+    await Authentication.user.init();
     if (Authentication.isLoggedIn()) {
-      Routing.slideToPage(context, Overview());
+      Routing.moveToPage(context, Overview());
     }
     else {
-      Routing.slideToPage(context, LoginPage());
+      Routing.moveToPage(context, LoginPage());
     }
   }
 

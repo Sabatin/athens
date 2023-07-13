@@ -170,8 +170,6 @@ class _LoginPageState extends State<LoginPage> {
     _formKey.currentState!.save();
     setState(() => _processing = true);
     try {
-      print(_fullName!);
-      print(_email!);
       await _auth.signUp(_fullName!, _email!, _password!);
       setState(() => _processing = false);
       return true;

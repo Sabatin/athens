@@ -1,5 +1,6 @@
 
 
+import 'package:athens/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Database {
@@ -77,9 +78,9 @@ class Database {
     final Map<String, dynamic> data = await get('users', FirebaseAuth.instance.currentUser!.uid);
     return EcoUser(data);
   }
+*/
 
-
-  static Future<List<EcoUser>> getTopUsers() async {
+  static Future<List<FoodUser>> getTopUsers() async {
     final QuerySnapshot snapshot =
     await _firestoreInstance.collection('users').orderBy('points', descending: true).limit(30).get();
 
@@ -91,7 +92,7 @@ class Database {
       i++;
     }
 
-    return data.map((e) => EcoUser(e)).toList();
+    return data.map((e) => FoodUser.fromMap(e)).toList();
   }
-   */
+
 }
