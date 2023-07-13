@@ -1,6 +1,6 @@
 import 'package:athens/constants/theme_model.dart';
 import 'package:athens/screens/food/food_list.dart';
-import 'package:athens/screens/restaurants/restaurants_list.dart';
+import 'package:athens/screens/restaurant/restaurants_list.dart';
 import 'package:flutter/material.dart';
 import '../trivia/daily_trivia_card.dart';
 import 'home_helpers.dart/invite_friend.dart';

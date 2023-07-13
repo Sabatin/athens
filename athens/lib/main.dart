@@ -1,6 +1,6 @@
 import 'package:athens/screens/authentication/login_page.dart';
 import 'package:athens/screens/overview.dart';
-import 'package:athens/screens/restaurants/restaurants_list.dart';
+import 'package:athens/screens/restaurant/restaurants_list.dart';
 import 'package:athens/screens/splash_screen.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';

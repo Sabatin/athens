@@ -37,6 +37,9 @@ class Backend {
 
     if (response.statusCode != 200) {
       //TODO: Write better error code
+      print('ERROR');
+      print(response.body);
+      print(response.statusCode);
       throw('Get error');
     }
 
