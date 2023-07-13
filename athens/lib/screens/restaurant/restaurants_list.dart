@@ -1,5 +1,5 @@
 import 'package:athens/model/restaurant.dart';
-import 'package:athens/screens/restaurants/restaurant_card.dart';
+import 'package:athens/screens/restaurant/restaurant_card.dart';
 import 'package:athens/service/restaurants_service.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +33,8 @@ class RestaurantsList extends StatelessWidget {
           child = SizedBox(key: Key('0'));
         }
         return AnimatedSwitcher(
-          duration: Duration(milliseconds: 100),
-          reverseDuration: Duration(milliseconds: 100),
+          duration: Duration(milliseconds: 200),
+          reverseDuration: Duration(milliseconds: 200),
           child: child
         );
       },

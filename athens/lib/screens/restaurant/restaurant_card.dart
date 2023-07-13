@@ -5,7 +5,7 @@ import 'package:athens/screens/utils/routing.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
-import '../restaurant/restaurant_image.dart';
+import 'restaurant_image.dart';
 
 class RestaurantCard extends StatelessWidget {
   final containerRadius = BorderRadius.all(Radius.circular(20));

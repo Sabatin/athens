@@ -34,8 +34,8 @@ class FoodList extends StatelessWidget {
           child = SizedBox(key: Key('0'));
         }
         return AnimatedSwitcher(
-          duration: Duration(milliseconds: 100),
-          reverseDuration: Duration(milliseconds: 100),
+          duration: Duration(milliseconds: 200),
+          reverseDuration: Duration(milliseconds: 200),
           child: child
         );
       },
