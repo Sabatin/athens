@@ -30,9 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+
+
   transparent_image: ^2.0.1
-
-
   flutter_share: ^2.0.0
   shimmer: ^2.0.0
   cached_network_image: ^3.2.1
