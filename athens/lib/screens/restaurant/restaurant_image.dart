@@ -2,9 +2,9 @@ import 'package:athens/service/restaurants.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantImage extends StatelessWidget {
-  String restaurantId;
-  double height;
-  double width;
+  final String restaurantId;
+  final double height;
+  final double width;
 
   RestaurantImage(this.restaurantId, this.height, this.width);
 
@@ -21,8 +21,7 @@ class RestaurantImage extends StatelessWidget {
             child: pic.requireData,
             key: ValueKey(0),
           );
-        }
-        else if (pic.hasError) {
+        } else if (pic.hasError) {
           child = Container(
             height: height,
             width: width,
@@ -39,8 +38,7 @@ class RestaurantImage extends StatelessWidget {
             ),
           );
            */
-        }
-        else {
+        } else {
           child = SizedBox(key: ValueKey(2));
         }
         return AnimatedSwitcher(

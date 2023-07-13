@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/theme_model.dart';
+import 'home_helpers.dart/profile_card.dart';
+import 'restaurants/restaurants_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,81 +13,48 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final ThemeModel theme = ThemeModel.instance;
-  final ShapeBorder cardShape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(25)));
   final containerRadius = BorderRadius.all(Radius.circular(25));
+  final ThemeModel theme = ThemeModel.instance;
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: ListView(
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-            child: Card(
-              margin: EdgeInsets.zero,
-              shape: cardShape,
-              elevation: 5,
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: theme.gradient, borderRadius: containerRadius),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    radius: 22,
-                    child: Icon(Icons.person),
-                  ),
-                  title: Text('Mario Rossi',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w500)),
-                  subtitle: Text('Livello 3',
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500)),
-                  trailing: Text('300',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white)),
-                ),
+          ProfileCard(),
+          Container(
+            padding: EdgeInsets.only(left: 30, top: 10),
+            child: Text(
+              'Suggested for you',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
-          //DailyTrivia(),
-          //DailyChallenge(),
-          /* ConsciousClickable(
-            onTap: () => Routing.slideToPage(context, Wiki()),
-            child: Card(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              elevation: 6,
-              shape: cardShape,
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: containerRadius,
-                    child: CachedNetworkImage(
-                      height: 170,
-                      width: width,
-                      imageUrl:
-                          'https://www.copma.it/wp-content/uploads/2022/11/copma-sostenibilita.jpg',
-                      imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.fitWidth))),
-                      placeholder: (context, url) => ErrorImageNetwork(width),
-                      errorWidget: (context, url, error) =>
-                          ErrorImageNetwork(width),
-                    ),
-                  ),
-                ],
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            height: 240,
+            child: RestaurantsList(),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30, top: 10),
+            child: Text(
+              'Best value',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
               ),
             ),
-          ), */
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            height: 240,
+            child: RestaurantsList(),
+          ),
+          //DailyTrivia(),
+          //DailyChallenge(),
           //InviteFriendsCard(),
         ],
       ),
