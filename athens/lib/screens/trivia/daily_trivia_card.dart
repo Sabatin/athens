@@ -15,7 +15,7 @@ class DailyTrivia extends StatelessWidget {
     return FutureBuilder<Trivia>(
         future: TriviaProxy.getDailyTrivia(),
         builder: (context, trivia) {
-          if (true) {
+          if (trivia.hasData) {
             return Clickable(
               onTap: () {
                 Routing.slideToPage(context, TriviaPage(trivia.data!));

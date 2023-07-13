@@ -5,16 +5,25 @@ import 'package:flutter/material.dart';
 class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+      width: 30,
+      child: Indicator(),
+    );
+  }
+}
+
+class Indicator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     if (Platform.isIOS) {
       return CupertinoActivityIndicator();
     }
-    return Container(
-      height: 40,
-      width: 40,
-      child: CircularProgressIndicator(
-        strokeWidth: 3,
-        color: Theme.of(context).highlightColor,
-      ),
+    return CircularProgressIndicator(
+      strokeWidth: 0,
+      color: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      value: 0,
     );
   }
 }

@@ -2,8 +2,6 @@ import "package:athens/constants/theme_model.dart";
 import "package:athens/model/user.dart";
 import "package:flutter/material.dart";
 
-
-
 class ProfileCard extends StatelessWidget {
   final ShapeBorder cardShape = RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(20)));
@@ -30,11 +28,14 @@ class ProfileCard extends StatelessWidget {
             ),
             title: Text(FoodUser.fullName,
                 style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w500)),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                )),
             trailing: Text(FoodUser.points.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.w500,
                     color: Colors.white)),
           ),

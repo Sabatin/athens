@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:athens/screens/ranking/ranking_page.dart';
+import 'package:athens/screens/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import '../constants/theme_model.dart';
 import 'home/home.dart';
@@ -15,7 +16,7 @@ class _OverviewState extends State<Overview> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ThemeModel theme = ThemeModel.instance;
   int _selectedTab = 0;
-  final List<Widget> _pageOptions = [Home(), RankingPage()];
+  final List<Widget> _pageOptions = [Home(), RankingPage(), UserProfile()];
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class _OverviewState extends State<Overview> {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: <BottomNavigationBarItem>[
-            _buildNavItem(Icons.search, Icons.search_outlined),
+            _buildNavItem(Icons.food_bank_outlined, Icons.food_bank),
             _buildNavItem(Icons.emoji_events_outlined, Icons.emoji_events),
             _buildNavItem(Icons.person_outline, Icons.person),
           ],
