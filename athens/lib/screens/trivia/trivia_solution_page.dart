@@ -1,3 +1,5 @@
+import 'package:athens/model/trivia/trivia.dart';
+import 'package:athens/model/trivia/trivia_solution.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';

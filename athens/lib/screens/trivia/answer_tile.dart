@@ -1,3 +1,10 @@
+import 'package:athens/model/trivia/trivia.dart';
+import 'package:athens/model/trivia/trivia_solution.dart';
+import 'package:athens/screens/trivia/trivia_solution_page.dart';
+import 'package:athens/screens/utils/clickable.dart';
+import 'package:athens/screens/utils/overlay_loader.dart';
+import 'package:athens/screens/utils/routing.dart';
+import 'package:athens/service/trivia_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -11,7 +18,7 @@ class AnswerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConsciousClickable(
+    return Clickable(
       onTap: () async {
         trivia.selectAnswer(index);
         OverlayLoader.showLoading(context);

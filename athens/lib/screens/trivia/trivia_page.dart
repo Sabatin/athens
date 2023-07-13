@@ -1,3 +1,4 @@
+import 'package:athens/model/trivia/trivia.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -46,20 +47,22 @@ class _TriviaPageState extends State<TriviaPage> {
               ))),
           SizedBox(height: 30),
           Expanded(
-              child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Builder(builder: (context) {
-                    final List<Widget> answerTiles = [];
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Builder(builder: (context) {
+                final List<Widget> answerTiles = [];
 
-                    for (int i = 0; i < widget.trivia.answers.length; i++) {
-                      answerTiles.add(Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: AnswerTile(widget.trivia, i),
-                      ));
-                    }
+                for (int i = 0; i < widget.trivia.answers.length; i++) {
+                  answerTiles.add(Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: AnswerTile(widget.trivia, i),
+                  ));
+                }
 
-                    return Column(children: answerTiles);
-                  })))
+                return Column(children: answerTiles);
+              }
+            )
+          ))
         ],
       )),
     );

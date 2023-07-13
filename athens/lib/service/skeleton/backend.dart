@@ -1,9 +1,8 @@
 import 'dart:convert';
-/*
 import 'package:http/http.dart' as http;
 
 
-class ConsciousBackend {
+class Backend {
   static final String _backendURL = 'https://us-central1-consciousbackend.cloudfunctions.net';
 
   static Future<Map<String, dynamic>> post(String functionName, Map<String, dynamic> body) async {
@@ -36,9 +35,6 @@ class ConsciousBackend {
     });
 
     if (response.statusCode != 200) {
-      print('ayayayayayyaya');
-      print(response.statusCode);
-      print(response.body);
       //TODO: Write better error code
       throw('Get error');
     }
@@ -46,4 +42,3 @@ class ConsciousBackend {
     return jsonDecode(response.body);
   }
 }
-*/
