@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'database.dart';
 
 class Authentication {
-  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> signIn(String email, String password) async {
     await _firebaseAuth.signInWithEmailAndPassword(
@@ -30,7 +30,7 @@ class Authentication {
     return await _firebaseAuth.signOut();
   }
 
-  Future<User?> get user async {
-    return _firebaseAuth.currentUser;
+  static String getAuthId() {
+    return _firebaseAuth.currentUser!.uid;
   }
 }

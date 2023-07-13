@@ -12,6 +12,18 @@ class Database {
     return data;
   }
 
+  static Future<void> post(String collection, String doc, Map<String, dynamic> data) async {
+    await _firestoreInstance.collection(collection).doc(doc).set(data);
+  }
+
+  static Future<void> update(String collection, String doc, Map<String, dynamic> data) async {
+    await _firestoreInstance.collection(collection).doc(doc).update(data);
+  }
+
+  static Future<void> delete(String collection, String doc) async {
+    await _firestoreInstance.collection(collection).doc(doc).delete();
+  }
+
   static Future<List<Map<String, dynamic>>> getAll(String collection) async {
     final QuerySnapshot snapshot = await _firestoreInstance.collection(collection).get();
 
