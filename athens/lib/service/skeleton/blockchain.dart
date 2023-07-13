@@ -37,22 +37,20 @@ class Blockchain {
     // });
 
     try {
-      print('DEBUG 0');
       final Wallet wallet = Wallet.createNew(credentials as EthPrivateKey, password, Random.secure());
 
-      print('DEBUG 0.5');
-
-      final File file = File('${await getApplicationDocumentsDirectory()}/wallet.json');
-
-
-      print('DEBUG 1');
+      final File file = File('${(await getApplicationDocumentsDirectory()).path}/wallet.json');
 
       await file.writeAsString(wallet.toJson());
-      print('DEBUG 2');
     } catch(e) {
       print(e);
       await Database.delete('users', Authentication.getAuthId());
     }
+  }
+
+  static Future<void> unlockWallet(String password) async {
+    final String content = File('${(await getApplicationDocumentsDirectory()).path}/wallet.json').readAsStringSync();
+    credentials = (await Wallet.fromJson(content, password)).privateKey;
   }
 
   static getBalanceOf(String address) async {
