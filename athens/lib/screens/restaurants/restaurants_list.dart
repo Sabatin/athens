@@ -13,6 +13,7 @@ class RestaurantsList extends StatelessWidget {
       builder: (context, restaurants) {
         if (restaurants.hasData) {
           return ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: restaurants.requireData.length,

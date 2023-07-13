@@ -14,6 +14,7 @@ class FoodList extends StatelessWidget {
       builder: (context, food) {
         if (food.hasData) {
           return ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: food.requireData.length,

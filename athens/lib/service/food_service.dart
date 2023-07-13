@@ -16,10 +16,10 @@ class FoodService {
     }).toList();
   }
 
-  static Future<void> buyFood(String restaurantId, String foodId) async {
+  static Future<void> buyFood(Food food) async {
     await Backend.post('buyFood', {
-      'food_id': foodId,
-      'restaurant_id': restaurantId
+      'food_id': food.id,
+      'restaurant_id': food.restaurantId
     });
   }
 }

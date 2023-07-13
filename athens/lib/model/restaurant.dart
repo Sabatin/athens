@@ -2,8 +2,8 @@ class Restaurant {
   late final String id;
   late final String name;
   late final String description;
-  late final String category = 'Meat';
-  late final String road = 'Via Roma 1';
+  late final String category;
+  late final String road;
 
   Restaurant(this.name, this.description) {
     id = '';
@@ -12,5 +12,7 @@ class Restaurant {
     id = restaurantMap['id'];
     name = restaurantMap['name'];
     description = restaurantMap['description'];
+    category = restaurantMap['category'];
+    road = restaurantMap['address'];
   }
 }
