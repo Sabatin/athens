@@ -12,8 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final ThemeModel theme = ThemeModel.instance;
-  final ShapeBorder cardShape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(25)));
+  final ShapeBorder cardShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25)));
   final containerRadius = BorderRadius.all(Radius.circular(25));
 
   @override

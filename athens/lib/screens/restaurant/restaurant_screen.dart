@@ -25,25 +25,27 @@ class RestaurantScreen extends StatelessWidget {
             Text(
               restaurant.description
             ),
-            FutureBuilder<List<Food>>(
-              future: FoodService().getFood(restaurant.id),
-              builder: (context, food) {
-                if (food.hasData) {
-                  return ListView.separated(
-                    itemCount: food.requireData.length,
-                    itemBuilder: (context, index) {
-                      return FoodCard(food.requireData[index]);
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 20);
-                    },
-                  );
-                }
-                else if (food.hasError) {
-                  return Text("Error");
-                }
-                return LoadingIndicator();
-              },
+            Expanded(
+              child: FutureBuilder<List<Food>>(
+                future: FoodService().getFood(restaurant.id),
+                builder: (context, food) {
+                  if (food.hasData) {
+                    return ListView.separated(
+                      itemCount: food.requireData.length,
+                      itemBuilder: (context, index) {
+                        return FoodCard(food.requireData[index]);
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 20);
+                      },
+                    );
+                  }
+                  else if (food.hasError) {
+                    return Text("Error");
+                  }
+                  return LoadingIndicator();
+                },
+              ),
             )
           ],
         )

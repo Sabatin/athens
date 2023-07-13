@@ -22,7 +22,7 @@ class Food {
     description = foodMap['description'];
     price = foodMap['price'];
     id = foodMap['id'];
-    reward = foodMap['reward'];
+    reward = 0;
   }
 
   Future<void> getRestaurant() async {
