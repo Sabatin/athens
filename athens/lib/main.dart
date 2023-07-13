@@ -1,4 +1,5 @@
 import 'package:athens/screens/overview.dart';
+import 'package:athens/screens/restaurants/restaurants_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Conscious',
         theme: theme,
-        home: Overview());
+        home: Overview()
+    );
   }
 }

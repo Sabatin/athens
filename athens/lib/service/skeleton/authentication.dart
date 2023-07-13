@@ -1,9 +1,8 @@
-/*
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'database.dart';
 
-class ConsciousAuth {
+class Authentication {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> signIn(String email, String password) async {
@@ -11,12 +10,14 @@ class ConsciousAuth {
         email: email, password: password);
   }
 
+  Future<void> signInAnonymously() async {
+    await _firebaseAuth.signInAnonymously();
+  }
+
   Future<bool> signUp(String fullName, String email, String password) async {
-    print('DEBUG 0');
     try {
       UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-      print('DEBUG 1');
-      await ConsciousDB.addUser(credential.user!.uid, fullName, email);
+      //await Database.addUser(credential.user!.uid, fullName, email);
       return true;
     } catch (e) {
       print(e);
@@ -33,4 +34,3 @@ class ConsciousAuth {
     return _firebaseAuth.currentUser;
   }
 }
-*/

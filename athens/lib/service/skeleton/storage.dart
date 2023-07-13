@@ -12,8 +12,6 @@ class Storage {
   }
 
   static Future<String> getImageURL(String path) async {
-    print("DEBUG: " + path);
-    print(await _storage.child('$path.jpg').getDownloadURL(););
     return await _storage.child('$path.jpg').getDownloadURL();
   }
 }
