@@ -1,4 +1,9 @@
 import 'package:athens/constants/theme_model.dart';
+import 'package:athens/model/trivia/trivia.dart';
+import 'package:athens/screens/trivia/trivia_page.dart';
+import 'package:athens/screens/utils/clickable.dart';
+import 'package:athens/screens/utils/routing.dart';
+import 'package:athens/service/trivia_service.dart';
 import 'package:flutter/material.dart';
 
 class DailyTrivia extends StatelessWidget {
@@ -11,7 +16,7 @@ class DailyTrivia extends StatelessWidget {
         future: TriviaProxy.getDailyTrivia(),
         builder: (context, trivia) {
           if (trivia.hasData) {
-            return ConsciousClickable(
+            return Clickable(
               onTap: () {
                 Routing.slideToPage(context, TriviaPage(trivia.data!));
               },
@@ -57,9 +62,9 @@ class DailyTrivia extends StatelessWidget {
                             child: Text(
                               'How much do you know about sustainability?',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500),
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
                             ),
                           )
                         ],
