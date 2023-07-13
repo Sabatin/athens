@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
+import 'package:athens/screens/ranking/ranking_page.dart';
 import 'package:flutter/material.dart';
 import '../constants/theme_model.dart';
 import 'home.dart';
@@ -14,7 +15,7 @@ class _OverviewState extends State<Overview> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ThemeModel theme = ThemeModel.instance;
   int _selectedTab = 0;
-  final List<Widget> _pageOptions = [Home()];
+  final List<Widget> _pageOptions = [Home(), RankingPage()];
 
   @override
   Widget build(BuildContext context) {

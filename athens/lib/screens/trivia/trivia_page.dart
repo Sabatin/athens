@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
+import 'answer_tile.dart';
 
 class TriviaPage extends StatefulWidget {
   final Trivia trivia;
