@@ -100,24 +100,26 @@ class FoodOrder extends StatelessWidget {
             child: Container(
               height: 55,
               width: 185,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.maincolor,
-                    elevation: 6,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
+              child: IgnorePointer(
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.maincolor,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
                       ),
                     ),
-                  ),
-                  child: Text(
-                    'Order now for ${AthensStrings.centsToString(food.price)}€',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17),
-                  )),
+                    child: Text(
+                      'Order now for ${AthensStrings.centsToString(food.price)}€',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17),
+                    )),
+              ),
             ),
           ),
           Clickable(

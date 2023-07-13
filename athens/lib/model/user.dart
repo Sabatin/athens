@@ -5,6 +5,7 @@ class FoodUser {
   String fullName = '';
   String publicKey = '';
   int points = 0;
+  int level = 0;
 
   FoodUser();
   FoodUser.fromMap(Map<String, dynamic> userMap) {
@@ -20,6 +21,7 @@ class FoodUser {
 
         fullName = userData['full_name'];
         points = userData['points'];
+        level = userData['level'];
         if (userData.containsKey('public_key')) {
           publicKey = userData['public_key'];
         }
@@ -31,7 +33,8 @@ class FoodUser {
   Future<void> create(String name) async {
     await Database.post('users', Authentication.getAuthId(), {
       'full_name': name,
-      'points': 0
+      'points': 0,
+      'level': 0
     });
     fullName = name;
   }

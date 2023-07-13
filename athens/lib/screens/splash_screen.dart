@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> start() async {
-    await Authentication().signOut();
     if (Authentication.isLoggedIn()) {
       await Authentication.user.init();
       Routing.moveToPage(context, Overview());
