@@ -65,7 +65,6 @@ class RestaurantScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                //Scritto da
                 Padding(
                   padding: EdgeInsets.only(left: 20, bottom: 10),
                   child: Column(

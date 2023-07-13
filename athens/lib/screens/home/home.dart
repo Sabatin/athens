@@ -27,20 +27,6 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-              'Restaurants suggested for you',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Container(
-            height: 240,
-            child: RestaurantsList(),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 30, top: 10),
-            child: Text(
               'Best value boxes',
               style: TextStyle(
                 fontSize: 20,
@@ -49,6 +35,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
+            //padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             height: 240,
             child: FoodList(),
           ),
@@ -56,7 +43,7 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-              'Restourants suggested for you',
+              'Restaurants suggested for you',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
@@ -64,7 +51,6 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             height: 240,
             child: RestaurantsList(),
           ),
