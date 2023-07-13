@@ -8,65 +8,71 @@ import 'package:flutter/material.dart';
 
 class DailyTrivia extends StatelessWidget {
   final ThemeModel theme = ThemeModel.instance;
-  final containerRadius = BorderRadius.all(Radius.circular(26));
+  final containerRadius = BorderRadius.all(Radius.circular(20));
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Trivia>(
         future: TriviaProxy.getDailyTrivia(),
         builder: (context, trivia) {
-          if (trivia.hasData) {
+          if (true) {
             return Clickable(
               onTap: () {
                 Routing.slideToPage(context, TriviaPage(trivia.data!));
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                height: 200,
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                height: 180,
                 child: GestureDetector(
                   child: Card(
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     elevation: 5,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                          gradient: theme.gradientList[1],
+                          gradient: theme.gradientList[5],
                           borderRadius: containerRadius),
                       alignment: Alignment.center,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 15, top: 20),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "Daily Quest\nGet your 100 WWTokens!",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
+                                alignment: Alignment.centerLeft,
                                 padding: EdgeInsets.only(left: 15, top: 20),
-                                alignment: Alignment.topLeft,
                                 child: Text(
-                                  "Daily Trivia\nGet your 100 points!",
+                                  'How much do you\nknow about food waste?',
                                   style: TextStyle(
-                                      fontSize: 26,
+                                      fontSize: 16,
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500),
                                 ),
                               ),
-                              Icon(Icons.recycling_outlined,
-                                  color: Colors.white),
+                              Container(
+                                padding: EdgeInsets.only(right: 15, top: 20),
+                                alignment: Alignment.topRight,
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                ),
+                              )
                             ],
                           ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.only(left: 15, top: 20),
-                            child: Text(
-                              'How much do you know about sustainability?',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                            ),
-                          )
                         ],
                       ),
                     ),

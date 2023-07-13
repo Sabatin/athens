@@ -2,6 +2,8 @@ import 'package:athens/constants/theme_model.dart';
 import 'package:athens/screens/food/food_list.dart';
 import 'package:athens/screens/restaurants/restaurants_list.dart';
 import 'package:flutter/material.dart';
+import '../trivia/daily_trivia_card.dart';
+import 'home_helpers.dart/invite_friend.dart';
 import 'home_helpers.dart/profile_card.dart';
 
 class Home extends StatefulWidget {
@@ -12,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final containerRadius = BorderRadius.all(Radius.circular(25));
+  final containerRadius = BorderRadius.all(Radius.circular(20));
   final ThemeModel theme = ThemeModel.instance;
 
   @override
@@ -50,9 +52,23 @@ class _HomeState extends State<Home> {
             height: 240,
             child: FoodList(),
           ),
-          //DailyTrivia(),
-          //DailyChallenge(),
-          //InviteFriendsCard(),
+          DailyTrivia(),
+          Container(
+            padding: EdgeInsets.only(left: 30, top: 10),
+            child: Text(
+              'Restourants suggested for you',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            height: 240,
+            child: RestaurantsList(),
+          ),
+          InviteFriendsCard(),
         ],
       ),
     );

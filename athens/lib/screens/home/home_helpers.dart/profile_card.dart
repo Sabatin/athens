@@ -5,8 +5,8 @@ import "package:flutter/material.dart";
 
 class ProfileCard extends StatelessWidget {
   final ShapeBorder cardShape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(25)));
-  final containerRadius = BorderRadius.all(Radius.circular(25));
+      borderRadius: BorderRadius.all(Radius.circular(20)));
+  final containerRadius = BorderRadius.all(Radius.circular(20));
   final ThemeModel theme = ThemeModel.instance;
   ProfileCard({Key? key}) : super(key: key);
 
