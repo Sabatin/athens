@@ -2,16 +2,9 @@ import 'package:athens/constants/theme_model.dart';
 import 'package:athens/screens/food/food_list.dart';
 import 'package:athens/screens/restaurants/restaurants_list.dart';
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream:athens/lib/screens/home/home.dart
-import 'home_helpers.dart/profile_card.dart';
-=======
-
-import '../constants/theme_model.dart';
+import '../trivia/daily_trivia_card.dart';
 import 'home_helpers.dart/invite_friend.dart';
 import 'home_helpers.dart/profile_card.dart';
-import 'restaurants/restaurants_list.dart';
-import 'trivia/daily_trivia_card.dart';
->>>>>>> Stashed changes:athens/lib/screens/home.dart
 
 class Home extends StatefulWidget {
   @override
@@ -34,7 +27,6 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-<<<<<<< Updated upstream:athens/lib/screens/home/home.dart
               'Restaurants suggested for you',
               style: TextStyle(
                 fontSize: 20,
@@ -49,8 +41,6 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-=======
->>>>>>> Stashed changes:athens/lib/screens/home.dart
               'Best value boxes',
               style: TextStyle(
                 fontSize: 20,

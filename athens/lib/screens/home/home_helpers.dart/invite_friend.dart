@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 
-import '../../constants/theme_model.dart';
+import '../../../constants/theme_model.dart';
 
 class InviteFriendsCard extends StatelessWidget {
   final ThemeModel theme = ThemeModel.instance;
