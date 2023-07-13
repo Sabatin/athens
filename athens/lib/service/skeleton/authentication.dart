@@ -1,3 +1,5 @@
+import 'package:athens/model/user.dart';
+import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'database.dart';
@@ -6,24 +8,21 @@ class Authentication {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> signIn(String email, String password) async {
-    await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+    await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    await FoodUser.init();
   }
 
   Future<void> signInAnonymously() async {
     await _firebaseAuth.signInAnonymously();
   }
 
-  Future<bool> signUp(String fullName, String email, String password) async {
-    try {
-      UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-      //await Database.addUser(credential.user!.uid, fullName, email);
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
+  Future<void> signUp(String fullName, String email, String password) async {
+    UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+    if (credential.user == null) {
+      throw(400);
     }
-
+    FoodUser.create(fullName);
+    Blockchain.generatePrivateKey(password);
   }
 
   Future<void> signOut() async {
@@ -32,5 +31,9 @@ class Authentication {
 
   static String getAuthId() {
     return _firebaseAuth.currentUser!.uid;
+  }
+
+  static bool isLoggedIn() {
+    return _firebaseAuth.currentUser != null;
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:math';
-
+import 'package:athens/model/user.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/database.dart';
 import 'package:path_provider/path_provider.dart';
@@ -32,6 +32,8 @@ class Blockchain {
       final File file = File('${await getApplicationDocumentsDirectory()}/wallet.json');
 
       file.writeAsString(wallet.toJson());
+
+      FoodUser.publicKey = publicKey;
     } catch(e) {
       await Database.delete('users', Authentication.getAuthId());
     }

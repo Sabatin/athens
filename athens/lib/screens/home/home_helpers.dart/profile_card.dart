@@ -1,4 +1,5 @@
 import "package:athens/constants/theme_model.dart";
+import "package:athens/model/user.dart";
 import "package:flutter/material.dart";
 
 
@@ -27,15 +28,10 @@ class ProfileCard extends StatelessWidget {
               radius: 22,
               child: Icon(Icons.person),
             ),
-            title: Text('Mario Rossi',
+            title: Text(FoodUser.fullName,
                 style: TextStyle(
                     color: Colors.white, fontWeight: FontWeight.w500)),
-            subtitle: Text('Livello 3',
-                style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500)),
-            trailing: Text('300',
+            trailing: Text(FoodUser.points.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20,
