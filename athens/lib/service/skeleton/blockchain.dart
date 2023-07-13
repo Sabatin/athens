@@ -1,5 +1,8 @@
-import 'dart:io';
+
+import 'package:flutter/services.dart';
+import 'package:http/http.dart';
 import 'dart:math';
+import 'dart:io';
 import 'package:athens/model/user.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/database.dart';
@@ -8,9 +11,16 @@ import 'package:web3dart/web3dart.dart';
 
 class Blockchain {
   static String publicKey = '';
-  static final String apiUrl = 'https://rpc.ankr.com/eth';
-  static final String wwtAddress = '0xsdf';
+  static final String apiUrl = 'http://127.0.0.1:8545/';
+  static final String WWTAddress = '0x444Eb467D80B7c1471BC8DA8a671C44c1bC601De';
+  // static final DeployedContract WWTContract = DeployedContract(ContractAbi.fromJson(WWTABI g, "WWT"), EthereumAddress.fromHex(WWTAddress));
 
+
+  static getDeployedContract() async {
+    final abiCode = await rootBundle.loadString("assets/ABI/WWT.json");
+    final DeployedContract contract = DeployedContract(ContractAbi.fromJson(abiCode, "WWT"), EthereumAddress.fromHex(WWTAddress));
+    return contract;
+  }
 
   static Future<EthPrivateKey> getPrivateKey(String password) async {
     final String content = File('${await getApplicationDocumentsDirectory()}/wallet.json').readAsStringSync();
@@ -32,14 +42,17 @@ class Blockchain {
       final File file = File('${await getApplicationDocumentsDirectory()}/wallet.json');
 
       file.writeAsString(wallet.toJson());
-
-      FoodUser.publicKey = publicKey;
     } catch(e) {
       await Database.delete('users', Authentication.getAuthId());
     }
   }
 
-  static int getBalance() {
-    return 0;
+  static getBalanceOf(String address) async {
+    final client = Web3Client(apiUrl, Client());
+    final WWTContract = await getDeployedContract();
+    final balance = await client.call(contract: WWTContract, function: WWTContract.function('balanceOf'), params: [EthereumAddress.fromHex(address)]);
+    return balance;
   }
+
+
 }
