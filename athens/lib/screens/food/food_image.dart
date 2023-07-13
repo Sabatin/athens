@@ -1,17 +1,19 @@
+import 'package:athens/model/food.dart';
+import 'package:athens/service/food_service.dart';
 import 'package:athens/service/restaurants_service.dart';
 import 'package:flutter/material.dart';
 
-class RestaurantImage extends StatelessWidget {
-  final String restaurantId;
+class FoodImage extends StatelessWidget {
+  final Food food;
   final double height;
   final double width;
 
-  RestaurantImage(this.restaurantId, this.height, this.width);
+  FoodImage(this.food, this.height, this.width);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<FadeInImage>(
-      future: RestaurantsService().getRestaurantImage(restaurantId),
+      future: FoodService.getFoodImage(food),
       builder: (context, pic) {
         Widget child;
         if (pic.hasData) {

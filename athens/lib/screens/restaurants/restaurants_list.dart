@@ -1,6 +1,6 @@
 import 'package:athens/model/restaurant.dart';
 import 'package:athens/screens/restaurants/restaurant_card.dart';
-import 'package:athens/service/restaurants.dart';
+import 'package:athens/service/restaurants_service.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantsList extends StatelessWidget {
