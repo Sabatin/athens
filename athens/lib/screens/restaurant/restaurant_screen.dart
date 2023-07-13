@@ -1,5 +1,7 @@
+import 'package:athens/model/food.dart';
 import 'package:athens/model/restaurant.dart';
 import 'package:athens/screens/restaurant/restaurant_image.dart';
+import 'package:athens/service/food_service.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantScreen extends StatelessWidget {
@@ -20,6 +22,15 @@ class RestaurantScreen extends StatelessWidget {
             SizedBox(height: 10),
             Text(
               restaurant.description
+            ),
+            FutureBuilder<List<Food>>(
+              future: FoodService().getFood(restaurant.id),
+              builder: (context, food) {
+                if (food.hasData) {
+
+                }
+                return SizedBox();
+              },
             )
           ],
         )
