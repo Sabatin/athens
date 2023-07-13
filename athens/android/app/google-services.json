@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "177078836859",
+    "project_id": "athens-70ac7",
+    "storage_bucket": "athens-70ac7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177078836859:android:edbd8c14c5975f6c324cde",
+        "android_client_info": {
+          "package_name": "com.example.athens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177078836859-u4783qk2psk6c3see3jp3956ff8f4mo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC610DdHfJy1szPkuF6UmPi9Btg-IzHTFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177078836859-u4783qk2psk6c3see3jp3956ff8f4mo5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "177078836859-d71b7dv1ei6fc3khg698c8pq5tohgkgp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.athens"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
