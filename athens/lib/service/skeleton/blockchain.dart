@@ -37,18 +37,11 @@ class Blockchain {
     // });
 
     try {
-      print('DEBUG 0');
       final Wallet wallet = Wallet.createNew(credentials as EthPrivateKey, password, Random.secure());
-
-      print('DEBUG 0.5');
 
       final File file = File('${await getApplicationDocumentsDirectory()}/wallet.json');
 
-
-      print('DEBUG 1');
-
       await file.writeAsString(wallet.toJson());
-      print('DEBUG 2');
     } catch(e) {
       print(e);
       await Database.delete('users', Authentication.getAuthId());

@@ -10,7 +10,7 @@ class InviteFriendsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
       height: 150,
       child: GestureDetector(
         onTap: () async => await _inviteFriends(),

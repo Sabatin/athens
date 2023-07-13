@@ -43,7 +43,7 @@ class DailyTrivia extends StatelessWidget {
                           padding: EdgeInsets.only(left: 15, top: 20),
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Daily Quest\nGet your 100 WWTokens!",
+                            "Daily Quest\nGet your 100 tokens!",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,

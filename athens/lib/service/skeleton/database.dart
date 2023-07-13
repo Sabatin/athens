@@ -8,13 +8,21 @@ class Database {
 
   static Future<Map<String, dynamic>> get(String collection, String doc) async {
     DocumentSnapshot documentSnapshot = await _firestoreInstance.collection(collection).doc(doc).get();
+    if (!documentSnapshot.exists) {
+      throw('Document not found');
+    }
     Map<String, dynamic> data = documentSnapshot.data()! as Map<String, dynamic>;
     data['id'] = documentSnapshot.id;
     return data;
   }
 
   static Future<void> post(String collection, String doc, Map<String, dynamic> data) async {
+    print('aaaaaaaaaaaaaaaa');
+    print(collection);
+    print(doc);
+    print(data);
     await _firestoreInstance.collection(collection).doc(doc).set(data);
+    print('bbbbbbbbbbbbbbbb');
   }
 
   static Future<void> update(String collection, String doc, Map<String, dynamic> data) async {
