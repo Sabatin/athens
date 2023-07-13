@@ -9,6 +9,7 @@ class Food {
   late final String id;
   late final String restaurantId;
   late int reward;
+  late final String category = 'Meat';
 
   Restaurant? restaurant = null;
 
@@ -26,6 +27,7 @@ class Food {
   }
 
   Future<void> getRestaurant() async {
-    restaurant = Restaurant.fromMap(await Database.get('restaurants', 'restaurantId'));
+    restaurant =
+        Restaurant.fromMap(await Database.get('restaurants', 'restaurantId'));
   }
 }

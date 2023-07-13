@@ -1,4 +1,5 @@
 import 'package:athens/model/food.dart';
+import 'package:athens/model/utils/athens_strings.dart';
 import 'package:athens/screens/order/food_order.dart';
 import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/routing.dart';
@@ -51,12 +52,12 @@ class FoodCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Partecipants: 300',
+                    Text(food.category,
                         style: TextStyle(
                             fontSize: 17,
                             color: theme.secondaryColor,
                             fontWeight: FontWeight.w500)),
-                    Text('€3,99',
+                    Text(AthensStrings.centsToString(food.price) + '€',
                         style: TextStyle(
                             fontSize: 22,
                             color: theme.secondaryColor,

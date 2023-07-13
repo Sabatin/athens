@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Conscious',
+        title: 'Waste Warriors',
         theme: theme,
         home: Overview()
     );

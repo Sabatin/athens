@@ -1,10 +1,9 @@
 import 'package:athens/screens/food/food_list.dart';
-import 'package:athens/screens/home/home_helpers.dart/profile_card.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/theme_model.dart';
-import '../restaurants/restaurants_list.dart';
+import '../constants/theme_model.dart';
+import 'home_helpers.dart/profile_card.dart';
+import 'restaurants/restaurants_list.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -27,7 +26,7 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-              'Restourants uggested for you',
+              'Restourants suggested for you',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
@@ -69,35 +68,5 @@ class HomeActions extends StatelessWidget {
     return Container(
         padding: EdgeInsets.only(right: 20, left: 5),
         child: Icon(Icons.account_circle_outlined, size: 27));
-  }
-}
-
-class ErrorImageNetwork extends StatelessWidget {
-  const ErrorImageNetwork(this.height);
-  final double height;
-
-  static const String url =
-      'https://user-images.githubusercontent.com/47315479/81145216-7fbd8700-8f7e-11ea-9d49-bd5fb4a888f1.png';
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return CachedNetworkImage(
-      height: height,
-      width: width,
-      imageUrl: url,
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      placeholder: (context, url) => Container(
-          height: 150, width: width, child: const CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Container(
-          height: 150, width: width, child: const CircularProgressIndicator()),
-    );
   }
 }
