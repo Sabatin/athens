@@ -39,7 +39,7 @@ class RestaurantImage extends StatelessWidget {
           );
            */
         } else {
-          child = SizedBox(key: ValueKey(2));
+          child = SizedBox(height: height, width: width, key: ValueKey(2));
         }
         return AnimatedSwitcher(
           child: child,
