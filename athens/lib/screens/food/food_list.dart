@@ -12,8 +12,10 @@ class FoodList extends StatelessWidget {
     return FutureBuilder<List<Food>>(
       future: FoodService().getAllFood(),
       builder: (context, food) {
+        Widget child;
         if (food.hasData) {
-          return ListView.separated(
+          child = ListView.separated(
+            key: Key('1'),
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -26,10 +28,16 @@ class FoodList extends StatelessWidget {
             },
           );
         } else if (food.hasError) {
-          return Text("Error");
+          child = Text("Error");
         }
-        return SizedBox(
-            height: 20, width: 20, child: CircularProgressIndicator());
+        else {
+          child = SizedBox(key: Key('0'));
+        }
+        return AnimatedSwitcher(
+          duration: Duration(milliseconds: 100),
+          reverseDuration: Duration(milliseconds: 100),
+          child: child
+        );
       },
     );
   }

@@ -17,6 +17,7 @@ class Backend {
     });
     
     if (response.statusCode != 200) {
+      print('Error: ' + response.statusCode.toString());
       //TODO: Write better error code
       throw('Post error');
     }

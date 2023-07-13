@@ -80,7 +80,10 @@ class DailyTrivia extends StatelessWidget {
                 ),
               ),
             );
-          } else if (trivia.hasError) {}
+          }
+          else if (trivia.hasError) {
+
+          }
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             height: 200,

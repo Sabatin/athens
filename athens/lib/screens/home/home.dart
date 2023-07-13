@@ -65,7 +65,7 @@ class HomeActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(right: 20, left: 5),
-        child: Icon(Icons.account_circle_outlined, size: 27));
+      padding: EdgeInsets.only(right: 20, left: 5),
+      child: Icon(Icons.account_circle_outlined, size: 27));
   }
 }
