@@ -12,7 +12,7 @@ class FoodList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Food>>(
-      future: FoodService().getFood('GriCjJfQaT3Gf0yoig0a'),
+      future: FoodService().getAllFood(),
       builder: (context, food) {
         if (food.hasData) {
           return ListView.separated(

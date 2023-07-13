@@ -26,6 +26,20 @@ class Database {
     return data;
   }
 
+  static Future<List<Map<String, dynamic>>> getAllGroup(String collection) async {
+    final QuerySnapshot snapshot = await _firestoreInstance.collectionGroup(collection).get();
+
+    List<Map<String, dynamic>> data = [];
+    int i = 0;
+    for (DocumentSnapshot document in snapshot.docs) {
+      data.add(document.data() as Map<String, dynamic>);
+      data[i]['id'] = document.id;
+      i++;
+    }
+
+    return data;
+  }
+
   static Future<Map<String, dynamic>> getDailyDoc(String collection) async {
     final QuerySnapshot snapshot = await _firestoreInstance
         .collection(collection)

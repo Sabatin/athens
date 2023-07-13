@@ -9,6 +9,12 @@ class FoodService {
     }).toList();
   }
 
+  Future<List<Food>> getAllFood() async {
+    return (await Database.getAllGroup('food')).map((foodMap) {
+      return Food.fromMap(foodMap);
+    }).toList();
+  }
+
   Future<void> buyFood(String restaurantId, String foodId) async {
 
   }
