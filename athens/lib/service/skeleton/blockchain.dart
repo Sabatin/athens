@@ -54,5 +54,10 @@ class Blockchain {
     return balance;
   }
 
-
+  static getBalanceOfSelf() async {
+    if (publicKey == '') {
+      throw Exception('No public key');
+    }
+    return getBalanceOf(publicKey.toString());
+  }
 }
