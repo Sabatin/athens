@@ -18,14 +18,13 @@ class Authentication {
   }
 
   Future<void> signUp(String fullName, String email, String password) async {
-    print('DEBUG 0');
     UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
     if (credential.user == null) {
       throw(400);
     }
-    print('DEBUG 1');
+
     await user.create(fullName);
-    print('DEBUG 2');
+
     Blockchain.generatePrivateKey(password);
   }
 

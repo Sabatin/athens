@@ -17,12 +17,7 @@ class Database {
   }
 
   static Future<void> post(String collection, String doc, Map<String, dynamic> data) async {
-    print('aaaaaaaaaaaaaaaa');
-    print(collection);
-    print(doc);
-    print(data);
     await _firestoreInstance.collection(collection).doc(doc).set(data);
-    print('bbbbbbbbbbbbbbbb');
   }
 
   static Future<void> update(String collection, String doc, Map<String, dynamic> data) async {
