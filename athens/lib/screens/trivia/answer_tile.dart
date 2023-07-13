@@ -1,10 +1,3 @@
-import 'package:conscious/model/trivia/trivia.dart';
-import 'package:conscious/model/trivia/trivia_solution.dart';
-import 'package:conscious/service/trivia_proxy.dart';
-import 'package:conscious/view/trivia/trivia_solution_page.dart';
-import 'package:conscious/view/utils/clickable.dart';
-import 'package:conscious/view/utils/overlay_loader.dart';
-import 'package:conscious/view/utils/routing.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';

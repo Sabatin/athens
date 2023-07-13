@@ -48,20 +48,15 @@ class RestaurantCard extends StatelessWidget {
                 ),
                 Container(
                   width: 300,
-                  padding: EdgeInsets.only(left: 15, right: 10),
+                  padding: EdgeInsets.only(left: 16, right: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Partecipants: 300',
+                      Text(restaurant.road + ' • ' + restaurant.category,
                           style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 15,
                               color: theme.secondaryColor,
                               fontWeight: FontWeight.w500)),
-                      Text('€3,99',
-                          style: TextStyle(
-                              fontSize: 22,
-                              color: theme.secondaryColor,
-                              fontWeight: FontWeight.w600))
                     ],
                   ),
                 ),

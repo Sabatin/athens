@@ -92,9 +92,9 @@ class _OverviewState extends State<Overview> {
 
 class OverViewTitle extends StatelessWidget {
   const OverViewTitle(this.tab);
-  final String home = 'Conscious';
+  final String home = 'Waste Warriors';
   final String leaderBoard = 'Leaderboard';
-  final String community = 'Community';
+  final String community = 'Profile';
   final int tab;
 
   @override

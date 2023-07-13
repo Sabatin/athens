@@ -8,9 +8,13 @@ class LoadingIndicator extends StatelessWidget {
     if (Platform.isIOS) {
       return CupertinoActivityIndicator();
     }
-    return CircularProgressIndicator(
-      strokeWidth: 3,
-      color: Theme.of(context).highlightColor,
+    return Container(
+      height: 40,
+      width: 40,
+      child: CircularProgressIndicator(
+        strokeWidth: 3,
+        color: Theme.of(context).highlightColor,
+      ),
     );
   }
 }
