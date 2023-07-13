@@ -22,7 +22,7 @@ class _OverviewState extends State<Overview> {
       key: _scaffoldKey,
       extendBody: Platform.isIOS ? false : true,
       appBar: AppBar(
-        actions: _buildActions(),
+        actions: [], //_buildActions(),
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: OverViewTitle(_selectedTab),
@@ -73,7 +73,7 @@ class _OverviewState extends State<Overview> {
             _buildNavItem(
                 Icons.energy_savings_leaf_outlined, Icons.energy_savings_leaf),
             _buildNavItem(Icons.emoji_events_outlined, Icons.emoji_events),
-            _buildNavItem(Icons.group_outlined, Icons.group),
+            _buildNavItem(Icons.person_outline, Icons.person),
           ],
         ),
       ),

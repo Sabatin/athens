@@ -1,7 +1,9 @@
+import 'package:athens/screens/trivia/daily_trivia_card.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/theme_model.dart';
+import 'challenge/daily_challenge_card.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -56,8 +58,8 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          //DailyTrivia(),
-          //DailyChallenge(),
+          DailyTrivia(),
+          DailyChallenge(),
           /* ConsciousClickable(
             onTap: () => Routing.slideToPage(context, Wiki()),
             child: Card(
