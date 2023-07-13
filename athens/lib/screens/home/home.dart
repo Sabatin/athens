@@ -1,9 +1,8 @@
+import 'package:athens/constants/theme_model.dart';
 import 'package:athens/screens/food/food_list.dart';
+import 'package:athens/screens/restaurants/restaurants_list.dart';
 import 'package:flutter/material.dart';
-
-import '../constants/theme_model.dart';
 import 'home_helpers.dart/profile_card.dart';
-import 'restaurants/restaurants_list.dart';
 
 class Home extends StatefulWidget {
   @override

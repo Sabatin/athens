@@ -25,7 +25,7 @@ class FoodOrder extends StatelessWidget {
           ),
           Clickable(
             onTap: () async {
-              FoodService().buyFood(food.id, food.id);
+              FoodService.buyFood(food.id, food.id);
             },
             child: Container(height: 50, width: 50, child: Text("Order")),
           )
