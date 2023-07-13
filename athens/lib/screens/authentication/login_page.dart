@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       fillColor: Colors.white,
-                      labelText: 'Full name',
+                      hintText: 'Full name',
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       fillColor: Colors.white,
-                      labelText: 'Email',
+                      hintText: 'Email',
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: true,
                     decoration: InputDecoration(
                       fillColor: Colors.white,
-                      labelText: 'Password',
+                      hintText: 'Password',
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(

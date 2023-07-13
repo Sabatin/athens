@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Waste Warriors',
         theme: theme,
-        home: Sandbox()
+        home: SplashScreen()
     );
   }
 }
