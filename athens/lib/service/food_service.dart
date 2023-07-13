@@ -1,4 +1,5 @@
 import 'package:athens/model/food.dart';
+import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/backend.dart';
 import 'package:athens/service/skeleton/database.dart';
 import 'package:athens/service/skeleton/storage.dart';
@@ -35,7 +36,8 @@ class FoodService {
   static Future<void> buyFood(Food food) async {
     await Backend.post('buyFood', {
       'food_id': food.id,
-      'restaurant_id': food.restaurantId
+      'restaurant_id': food.restaurantId,
+      'user_token': Authentication.getAuthId()
     });
   }
 }
