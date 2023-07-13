@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:web3dart/web3dart.dart';
 
 class Blockchain {
-  static String publicKey = '';
+  static late Credentials credentials;
   static final String apiUrl = 'http://127.0.0.1:8545/';
   static final String WWTAddress = '0x444Eb467D80B7c1471BC8DA8a671C44c1bC601De';
   // static final DeployedContract WWTContract = DeployedContract(ContractAbi.fromJson(WWTABI g, "WWT"), EthereumAddress.fromHex(WWTAddress));
@@ -29,20 +29,28 @@ class Blockchain {
 
 
   static Future<void> generatePrivateKey(String password) async {
-    final EthPrivateKey credentials = EthPrivateKey.createRandom(Random.secure());
-    publicKey = credentials.address.hex;
+    final EthPrivateKey randomCred = EthPrivateKey.createRandom(Random.secure());
+    credentials = await randomCred;
 
-    await Database.update('users', Authentication.getAuthId(), {
-      'public_key': credentials.address.hex
-    });
+    // await Database.update('users', Authentication.getAuthId(), {
+    //   'public_key': credentials.address.hex
+    // });
 
     try {
-      final Wallet wallet = Wallet.createNew(credentials, password, Random.secure());
+      print('DEBUG 0');
+      final Wallet wallet = Wallet.createNew(credentials as EthPrivateKey, password, Random.secure());
+
+      print('DEBUG 0.5');
 
       final File file = File('${await getApplicationDocumentsDirectory()}/wallet.json');
 
-      file.writeAsString(wallet.toJson());
+
+      print('DEBUG 1');
+
+      await file.writeAsString(wallet.toJson());
+      print('DEBUG 2');
     } catch(e) {
+      print(e);
       await Database.delete('users', Authentication.getAuthId());
     }
   }
@@ -55,9 +63,9 @@ class Blockchain {
   }
 
   static getBalanceOfSelf() async {
-    if (publicKey == '') {
-      throw Exception('No public key');
+    if (credentials == null) {
+     throw Exception('No credentials');
     }
-    return getBalanceOf(publicKey.toString());
+    return getBalanceOf(credentials.address.hex);
   }
 }

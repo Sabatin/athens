@@ -1,3 +1,4 @@
+import 'package:athens/sandbox.dart';
 import 'package:athens/screens/authentication/login_page.dart';
 import 'package:athens/screens/overview.dart';
 import 'package:athens/screens/restaurants/restaurants_list.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Waste Warriors',
         theme: theme,
-        home: SplashScreen()
+        home: Sandbox()
     );
   }
 }
