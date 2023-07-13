@@ -1,9 +1,10 @@
+import 'package:athens/screens/food/food_list.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/theme_model.dart';
 import 'home_helpers.dart/profile_card.dart';
-import 'restaurants/restaurants_screen.dart';
+import 'restaurants/restaurants_list.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-              'Suggested for you',
+              'Restourants uggested for you',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
@@ -41,7 +42,7 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.only(left: 30, top: 10),
             child: Text(
-              'Best value',
+              'Best value boxes',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             height: 240,
-            child: RestaurantsList(),
+            child: FoodList(),
           ),
           //DailyTrivia(),
           //DailyChallenge(),

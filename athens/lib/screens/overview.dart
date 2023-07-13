@@ -71,8 +71,7 @@ class _OverviewState extends State<Overview> {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: <BottomNavigationBarItem>[
-            _buildNavItem(
-                Icons.energy_savings_leaf_outlined, Icons.energy_savings_leaf),
+            _buildNavItem(Icons.search, Icons.search_outlined),
             _buildNavItem(Icons.emoji_events_outlined, Icons.emoji_events),
             _buildNavItem(Icons.person_outline, Icons.person),
           ],
