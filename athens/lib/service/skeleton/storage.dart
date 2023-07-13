@@ -12,7 +12,11 @@ class Storage {
   }
 
   static Future<String> getImageURL(String path) async {
-    return await _storage.child('$path.jpg').getDownloadURL();
+    try {
+      return await _storage.child('$path.jpg').getDownloadURL();
+    } catch(e) {
+      return await _storage.child('$path.jpeg').getDownloadURL();
+    }
   }
 }
 
