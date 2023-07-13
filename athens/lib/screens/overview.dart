@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:athens/screens/ranking/ranking_page.dart';
 import 'package:flutter/material.dart';
 import '../constants/theme_model.dart';
-import 'home.dart';
+import 'home/home.dart';
 
 class Overview extends StatefulWidget {
   @override

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 
 class Backend {
-  static final String _backendURL = 'https://us-central1-consciousbackend.cloudfunctions.net';
+  static final String _backendURL = 'https://us-central1-athens-70ac7.cloudfunctions.net';
 
   static Future<Map<String, dynamic>> post(String functionName, Map<String, dynamic> body) async {
     final http.Response response = await http.post(

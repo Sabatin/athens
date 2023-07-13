@@ -1,4 +1,5 @@
 import 'package:athens/model/food.dart';
+import 'package:athens/service/skeleton/backend.dart';
 import 'package:athens/service/skeleton/database.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,10 @@ class FoodService {
     }).toList();
   }
 
-  Future<void> buyFood(String restaurantId, String foodId) async {
-
+  static Future<void> buyFood(String restaurantId, String foodId) async {
+    await Backend.post('buyFood', {
+      'food_id': foodId,
+      'restaurant_id': restaurantId
+    });
   }
 }
