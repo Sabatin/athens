@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'dart:math';
@@ -52,11 +54,11 @@ class Blockchain {
     credentials = (await Wallet.fromJson(content, password)).privateKey;
   }
 
-  static Future<BigInt> getBalanceOf(String address) async {
+  static Future<int> getBalanceOf(String address) async {
     final client = Web3Client(apiUrl, Client());
     final WWTContract = await getDeployedContract();
     final balance = await client.call(contract: WWTContract, function: WWTContract.function('balanceOf'), params: [EthereumAddress.fromHex(address)]);
-    return balance.first as BigInt;
+    return (balance.first ~/ (BigInt.from(10).pow(18))).toInt();
   }
   static sendTokensTo(String address, int amount) async {
     final client = Web3Client(apiUrl, Client());
@@ -65,7 +67,7 @@ class Blockchain {
       throw Exception('No credentials');
     }
     BigInt amountInWei = BigInt.from(amount) * BigInt.from(10).pow(18);
-    if (await getBalanceOfSelf() < amountInWei) {
+    if (BigInt.from(await getBalanceOfSelf()) < amountInWei) {
       throw Exception('Insufficient funds');
     }
 
@@ -79,7 +81,7 @@ class Blockchain {
   }
 
 
-  static Future<BigInt> getBalanceOfSelf() async {
+  static Future<int> getBalanceOfSelf() async {
     return await getBalanceOf(Authentication.user.publicKey);
   }
 }

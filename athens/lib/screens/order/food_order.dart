@@ -131,7 +131,7 @@ class FoodOrder extends StatelessWidget {
             alignment: Alignment.center,
             height: 55,
             width: 250,
-            child: FutureBuilder<BigInt>(
+            child: FutureBuilder<int>(
               future: Blockchain.getBalanceOfSelf(),
               builder: (context, balance) {
                 Widget child;

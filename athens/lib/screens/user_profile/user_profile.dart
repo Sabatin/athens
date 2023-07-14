@@ -54,7 +54,7 @@ class UserProfile extends StatelessWidget {
                         Icon(Icons.currency_bitcoin_outlined,
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
-                        FutureBuilder<BigInt>(
+                        FutureBuilder<int>(
                           future: Blockchain.getBalanceOfSelf(),
                           builder: (context, balance) {
                             Widget child;
