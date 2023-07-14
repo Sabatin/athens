@@ -145,7 +145,7 @@ class FoodOrder extends StatelessWidget {
                       }));
                     },
                     child: Text(
-                      'Or buy with ${balance.requireData.toString()} coins',
+                      'Or buy with ${food.price} coins',
                       key: ValueKey(0),
                       style: TextStyle(
                           color: theme.secondaryColor,
