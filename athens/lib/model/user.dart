@@ -1,17 +1,18 @@
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/database.dart';
+import 'package:flutter/cupertino.dart';
 
 class FoodUser {
   String fullName = '';
   String publicKey = '';
-  int points = 0;
+  ValueNotifier<int> points = ValueNotifier(0);
   int level = 1;
   String hero = '';
 
   FoodUser();
   FoodUser.fromMap(Map<String, dynamic> userMap) {
     fullName = userMap['full_name'];
-    points = userMap['points'];
+    points.value = userMap['points'];
     if (userMap.containsKey('hero')) {
       hero = userMap['hero'];
     }
@@ -24,7 +25,7 @@ class FoodUser {
         final userData = await Database.get('users', Authentication.getAuthId());
 
         fullName = userData['full_name'];
-        points = userData['points'];
+        points.value = userData['points'];
         level = userData['level'];
         if (userData.containsKey('public_key')) {
           publicKey = userData['public_key'];

@@ -23,8 +23,6 @@ class FoodService {
   }
 
   static Future<FadeInImage> getFoodImage(Food food) async {
-    print('IDDIO');
-    print(food.id);
     return FadeInImage.memoryNetwork(
       placeholder: kTransparentImage,
       fadeInDuration: Duration(milliseconds: 150),
@@ -44,7 +42,9 @@ class FoodService {
       'user_token': await Authentication.getAuthToken(),
       'with_tokens': withTokens
     });
-
+    if (res.containsKey('earned')) {
+      Authentication.user.points.value = res['earned'];
+    }
     return res["tx"];
   }
 }

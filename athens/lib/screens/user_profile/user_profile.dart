@@ -120,7 +120,7 @@ class UserProfile extends StatelessWidget {
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
                         Text(
-                          Authentication.user.points.toString(),
+                          Authentication.user.points.value.toString(),
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,

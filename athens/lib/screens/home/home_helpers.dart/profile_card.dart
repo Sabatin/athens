@@ -47,7 +47,7 @@ class ProfileCard extends StatelessWidget {
               'LV. ${Authentication.user.level.toString()}',
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
             ),
-            trailing: Text(Authentication.user.points.toString(),
+            trailing: Text(Authentication.user.points.value.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 22,

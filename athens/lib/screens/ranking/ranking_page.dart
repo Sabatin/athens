@@ -203,7 +203,7 @@ class RankingPage extends StatelessWidget {
           style: TextStyle(
               color: color, fontSize: 13, fontWeight: FontWeight.w500),
         ),
-        trailing: Text(user.points.toString(),
+        trailing: Text(user.points.value.toString(),
             style: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.w500, color: color)),
       ),

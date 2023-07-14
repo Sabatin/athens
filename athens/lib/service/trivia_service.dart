@@ -9,15 +9,17 @@ class TriviaProxy {
   }
 
   static Future<TriviaSolution> submitAnswer(Trivia trivia, int answerIndex) async {
-    return TriviaSolution(
-      await Backend.post(
-        'submitTriviaAnswer',
-        {
-          'triviaId': trivia.id,
-          'answerIndex': answerIndex,
-          'user_token': await Authentication.getAuthToken()
-        },
-      ),
+    Map<String, dynamic> triviaSolution = await Backend.post(
+      'submitTriviaAnswer',
+      {
+        'triviaId': trivia.id,
+        'answerIndex': answerIndex,
+        'user_token': await Authentication.getAuthToken()
+      },
     );
+    if (triviaSolution['correctAnswerIndex'] == answerIndex) {
+      Authentication.user.points.value = Authentication.user.points.value + trivia.availablePoints;
+    }
+    return TriviaSolution(triviaSolution);
   }
 }
