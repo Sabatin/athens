@@ -198,7 +198,7 @@ class UserProfile extends StatelessWidget {
                 width: 175,
                 child: ElevatedButton(
                     onPressed: () =>
-                        Routing.slideToPage(context, SendTokensMotherFucker()),
+                        Routing.slideToPage(context, SendTokens()),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.maincolor,
                       elevation: 6,

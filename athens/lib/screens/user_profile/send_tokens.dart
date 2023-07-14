@@ -3,23 +3,25 @@ import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
+import '../unlock_wallet_screen.dart';
+import '../utils/routing.dart';
 
-class SendTokensMotherFucker extends StatefulWidget {
-  SendTokensMotherFucker();
+class SendTokens extends StatefulWidget {
+  SendTokens();
 
   @override
-  State<SendTokensMotherFucker> createState() => _SendTokensScreenState();
+  State<SendTokens> createState() => _SendTokensScreenState();
 }
 
-class _SendTokensScreenState extends State<SendTokensMotherFucker> {
+class _SendTokensScreenState extends State<SendTokens> {
   final ThemeModel theme = ThemeModel.instance;
 
-  late String walletPassword;
+  late String walletToSend;
   late double amoutToSend;
 
   @override
   void initState() {
-    walletPassword = '';
+    walletToSend = '';
     amoutToSend = 0.0;
     super.initState();
   }
@@ -56,9 +58,9 @@ class _SendTokensScreenState extends State<SendTokensMotherFucker> {
                     return null;
                 },
                 onChanged: (String p) {
-                  this.walletPassword = p;
+                  this.walletToSend = p;
                 },
-                onSaved: (String? value) => this.walletPassword = value!,
+                onSaved: (String? value) => this.walletToSend = value!,
               ),
             ),
             Container(
@@ -96,7 +98,17 @@ class _SendTokensScreenState extends State<SendTokensMotherFucker> {
               child: ElevatedButton(
                   onPressed: () async {
                     try {
-                      Navigator.pop(context);
+                      Routing.slideToPage(context,
+                          UnlockWalletScreen(onUnlocked: () async {
+                            try {
+                              await Blockchain.sendTokensTo(
+                                  this.walletToSend, this.amoutToSend);
+                              Navigator.pop(context);
+                            } catch (e) {
+                              //TODO: Display error to the user
+                              print(e);
+                            }
+                          }));
                     } catch (e) {
                       print(e);
                     }

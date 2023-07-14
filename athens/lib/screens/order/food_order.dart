@@ -142,7 +142,7 @@ class FoodOrder extends StatelessWidget {
                             UnlockWalletScreen(onUnlocked: () async {
                               try {
                                 OverlayLoader.showLoading(context);
-                                await Blockchain.sendTokensTo(food.restaurant!.publicKey, food.price);
+                                await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
                                 final res = await FoodService.buyFood(food, true);
                                 OverlayLoader.unshowLoading();
                                 Routing.slideToPage(context, OrderSuccess(res));

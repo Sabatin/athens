@@ -65,14 +65,17 @@ class Blockchain {
   //  return res with precision 2
     return double.parse(res.toStringAsFixed(2));
   }
-  static sendTokensTo(String address, int amount) async {
+  static sendTokensTo(String address, double amount) async {
     final client = Web3Client(apiUrl, Client());
     final WWTContract = await getDeployedContract();
     if (credentials == null) {
       throw Exception('No credentials');
     }
     BigInt amountInWei = BigInt.from(amount) * BigInt.from(10).pow(18);
-    if (BigInt.from(await getBalanceOfSelf()) < amountInWei) {
+    print(amountInWei);
+    print(await getBalanceOfSelf());
+    print(BigInt.from(await getBalanceOfSelf()));
+    if (BigInt.from(await getBalanceOfSelf()) * BigInt.from(10).pow(18) < amountInWei) {
       throw Exception('Insufficient funds');
     }
 
