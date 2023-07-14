@@ -20,12 +20,15 @@ class AnswerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Clickable(
       onTap: () async {
-        trivia.selectAnswer(index);
-        OverlayLoader.showLoading(context);
-        final TriviaSolution solution =
-            await TriviaProxy.submitAnswer(trivia, index);
-        OverlayLoader.unshowLoading();
-        Routing.slideToPage(context, TriviaSolutionPage(trivia, solution));
+        try {
+          trivia.selectAnswer(index);
+          OverlayLoader.showLoading(context);
+          final TriviaSolution solution = await TriviaProxy.submitAnswer(trivia, index);
+          OverlayLoader.unshowLoading();
+          Routing.moveToPage(context, TriviaSolutionPage(trivia, solution));
+        } catch(e) {
+          OverlayLoader.unshowLoading();
+        }
       },
       child: Container(
           alignment: Alignment.center,

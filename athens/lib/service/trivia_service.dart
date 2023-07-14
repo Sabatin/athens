@@ -8,8 +8,7 @@ class TriviaProxy {
     return Trivia(await Backend.get('getDailyTrivia'));
   }
 
-  static Future<TriviaSolution> submitAnswer(
-      Trivia trivia, int answerIndex) async {
+  static Future<TriviaSolution> submitAnswer(Trivia trivia, int answerIndex) async {
     return TriviaSolution(
       await Backend.post(
         'submitTriviaAnswer',
