@@ -139,7 +139,7 @@ class FoodOrder extends StatelessWidget {
                     await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
                     final res = await FoodService.buyFood(food, true);
                     OverlayLoader.unshowLoading();
-                    Routing.slideToPage(context, OrderSuccess(res));
+                    Routing.moveToPage(context, OrderSuccess(res));
                   } catch (e) {
                     OverlayLoader.unshowLoading();
                     //TODO: Display error to the user

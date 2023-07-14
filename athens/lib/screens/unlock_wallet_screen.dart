@@ -76,7 +76,6 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
                     await Blockchain.unlockWallet(password);
                     OverlayLoader.unshowLoading();
                     widget.onUnlocked();
-                    Navigator.pop(context);
                   } catch (e) {
                     OverlayLoader.unshowLoading();
                     Prompt.dialogue(context, 'Wrong password');
