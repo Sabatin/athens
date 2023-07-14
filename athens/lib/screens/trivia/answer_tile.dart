@@ -28,6 +28,8 @@ class AnswerTile extends StatelessWidget {
         Routing.slideToPage(context, TriviaSolutionPage(trivia, solution));
       },
       child: Container(
+          alignment: Alignment.center,
+          height: 100,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20), color: theme.maincolor),
           padding: EdgeInsets.all(15),
@@ -35,7 +37,8 @@ class AnswerTile extends StatelessWidget {
               child: Text(
             trivia.answers[index],
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16),
           ))),
     );
   }
