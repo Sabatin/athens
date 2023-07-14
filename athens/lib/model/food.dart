@@ -25,6 +25,9 @@ class Food {
   }
 
   Future<void> getRestaurant() async {
+    if (restaurant != null) {
+      return;
+    }
     restaurant = Restaurant.fromMap(await Database.get('restaurants', 'restaurantId'));
   }
 }

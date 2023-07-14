@@ -5,7 +5,7 @@ class FoodUser {
   String fullName = '';
   String publicKey = '';
   int points = 0;
-  int level = 0;
+  int level = 1;
 
   FoodUser();
   FoodUser.fromMap(Map<String, dynamic> userMap) {
@@ -34,7 +34,7 @@ class FoodUser {
     await Database.post('users', Authentication.getAuthId(), {
       'full_name': name,
       'points': 0,
-      'level': 0
+      'level': 1
     });
     fullName = name;
   }
