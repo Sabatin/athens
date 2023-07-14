@@ -13,7 +13,6 @@ class Food {
 
   Restaurant? restaurant = null;
 
-
   Food.fromMap(Map<String, dynamic> foodMap) {
     name = foodMap['name'];
     description = foodMap['description'];
@@ -28,6 +27,7 @@ class Food {
     if (restaurant != null) {
       return;
     }
-    restaurant = Restaurant.fromMap(await Database.get('restaurants', 'restaurantId'));
+    restaurant =
+        Restaurant.fromMap(await Database.get('restaurants', restaurantId));
   }
 }

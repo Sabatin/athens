@@ -32,7 +32,7 @@ class FoodOrder extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             alignment: Alignment.centerLeft,
-            child: Text('Order recup - Pizzeria Bella Napoli',
+            child: Text('Order recup - ${food.restaurant!.name}',
                 style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
           ),
           Padding(
@@ -64,14 +64,14 @@ class FoodOrder extends StatelessWidget {
                           )),
                     ),
                     Container(
-                      child: Text('Via Roma 1',
+                      child: Text(food.restaurant!.road,
                           style: TextStyle(fontWeight: FontWeight.w500)),
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
                 Container(
-                  child: Text('Pizza Margherita',
+                  child: Text(food.name,
                       style: TextStyle(
                           fontSize: 16,
                           color: theme.secondaryColor,
@@ -99,7 +99,7 @@ class FoodOrder extends StatelessWidget {
             },
             child: Container(
               height: 55,
-              width: 185,
+              width: 250,
               child: IgnorePointer(
                 child: ElevatedButton(
                     onPressed: () {},
@@ -139,7 +139,7 @@ class FoodOrder extends StatelessWidget {
               height: 55,
               width: 250,
               child: Text(
-                'Or buy with 3000 coins',
+                'Or buy with ${food.price} coins',
                 style: TextStyle(
                     color: theme.secondaryColor,
                     fontWeight: FontWeight.w600,

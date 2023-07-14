@@ -43,12 +43,15 @@ class DailyTrivia extends StatelessWidget {
                           padding: EdgeInsets.only(left: 15, top: 20),
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Daily Quest\nGet your 100 tokens!",
+                            "Daily Quest\nGet your ${trivia.requireData.availablePoints} points!",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500),
                           ),
+                        ),
+                        Text(
+                          'Only ${trivia.requireData.correctAnswers} answered'
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -5,6 +5,8 @@ class Trivia {
   late final String question;
   late final List<String> answers;
   late final String topicId;
+  late final int correctAnswers;
+  late int availablePoints;
 
   int chosenAnswer = 0;
 
@@ -15,6 +17,11 @@ class Trivia {
         .map((answer) => answer.toString())
         .toList();
     topicId = triviaMap['topicID'].toString();
+    correctAnswers = triviaMap['correct_answers'];
+    availablePoints = 10 - correctAnswers;
+    if (availablePoints < 0) {
+      availablePoints = 0;
+    }
   }
 
   void selectAnswer(int answer) {

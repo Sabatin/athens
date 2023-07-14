@@ -27,7 +27,7 @@ class FoodCard extends StatelessWidget {
           try {
             await food.getRestaurant();
             OverlayLoader.unshowLoading();
-          } catch(e) {
+          } catch (e) {
             OverlayLoader.unshowLoading();
           }
         }
@@ -36,7 +36,8 @@ class FoodCard extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30))),
         child: Container(
           decoration: BoxDecoration(borderRadius: containerRadius),
           alignment: Alignment.centerLeft,
