@@ -4,6 +4,7 @@ class Restaurant {
   late final String description;
   late final String category;
   late final String road;
+  late final String publicKey;
 
   Restaurant(this.name, this.description) {
     id = '';
@@ -14,5 +15,6 @@ class Restaurant {
     description = restaurantMap['description'];
     category = restaurantMap['category'];
     road = restaurantMap['address'];
+    publicKey = restaurantMap['public_key'];
   }
 }
