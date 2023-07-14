@@ -1,9 +1,11 @@
 import 'package:athens/screens/authentication/login_page.dart';
+import 'package:athens/screens/user_profile/send_tokens.dart';
 import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/blockchain.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -55,29 +57,25 @@ class UserProfile extends StatelessWidget {
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
                         FutureBuilder<double>(
-                          future: Blockchain.getBalanceOfSelf(),
-                          builder: (context, balance) {
-                            Widget child;
-                            if (balance.hasData) {
-                              child = Text(
-                                key: ValueKey(0),
-                                balance.requireData.toString(),
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                  )
-                              );
-                            }
-                            else {
-                              child = SizedBox(key: ValueKey(1));
-                            }
-                            return AnimatedSwitcher(
-                              duration: Duration(milliseconds: 100),
-                              reverseDuration: Duration(milliseconds: 100),
-                              child: child
-                            );
-                          }
-                        ),
+                            future: Blockchain.getBalanceOfSelf(),
+                            builder: (context, balance) {
+                              Widget child;
+                              if (balance.hasData) {
+                                child = Text(
+                                    key: ValueKey(0),
+                                    balance.requireData.toString(),
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    ));
+                              } else {
+                                child = SizedBox(key: ValueKey(1));
+                              }
+                              return AnimatedSwitcher(
+                                  duration: Duration(milliseconds: 100),
+                                  reverseDuration: Duration(milliseconds: 100),
+                                  child: child);
+                            }),
                       ],
                     ),
                   ),
@@ -145,7 +143,7 @@ class UserProfile extends StatelessWidget {
                     await Authentication().signOut();
                     OverlayLoader.unshowLoading();
                     Routing.moveToPage(context, LoginPage());
-                  } catch(e) {
+                  } catch (e) {
                     OverlayLoader.unshowLoading();
                   }
                 },
@@ -179,55 +177,72 @@ class UserProfile extends StatelessWidget {
               Container(
                 height: 50,
                 width: 175,
-                child: IgnorePointer(
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.maincolor,
-                        elevation: 6,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
+                child: ElevatedButton(
+                    onPressed: () =>
+                        Routing.slideToPage(context, SendTokensMotherFucker()),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.maincolor,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
                         ),
                       ),
-                      child: Text(
-                        'Send',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17),
-                      )),
-                ),
+                    ),
+                    child: Text(
+                      'Send',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17),
+                    )),
               ),
               Container(
                 height: 50,
                 width: 175,
-                child: IgnorePointer(
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.maincolor,
-                        elevation: 6,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
+                child: ElevatedButton(
+                    onPressed: () => _showMyDialog(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.maincolor,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
                         ),
                       ),
-                      child: Text(
-                        'Receive',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17),
-                      )),
-                ),
+                    ),
+                    child: Text(
+                      'Receive',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17),
+                    )),
               ),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Receive Tokens'),
+          content: Text(Authentication.user.publicKey),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Copy Address',
+                  style: TextStyle(color: theme.maincolor)),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
     );
   }
 }
