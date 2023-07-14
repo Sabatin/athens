@@ -20,6 +20,10 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
   @override
   void initState() {
     password = '';
+    if (Blockchain.credentials != null) {
+      widget.onUnlocked();
+      Navigator.pop(context);
+    }
     super.initState();
   }
 
