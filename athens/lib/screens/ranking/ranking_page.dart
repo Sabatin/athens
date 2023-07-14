@@ -52,41 +52,6 @@ class RankingPage extends StatelessWidget {
                   }
                   return LoadingIndicator();
                 }),
-              future: Database.getTopUsers(),
-              builder: (context, users) {
-                Widget child;
-                if (users.hasData) {
-                  child = ListView.builder(
-                    key: ValueKey(1),
-                    physics: BouncingScrollPhysics(),
-                    itemCount: users.requireData.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index == 0)
-                        return Container();
-                      else {
-                        final int i = index - 1;
-                        if (i == 0) //Primo posto
-                          return _firstTile(context, users.requireData[index]);
-                        else if (i == 1) //Secondo posto
-                          return _secondTile(context, i, users.requireData[index]);
-                        else if (i == 2) // Terzo posto
-                          return _thirdTile(context, i, users.requireData[index]);
-                        else
-                          return _rankingTile(context, i, users.requireData[index]);
-                      }
-                    },
-                  );
-                }
-                else {
-                  child = SizedBox(key: ValueKey(0));
-                }
-                return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 150),
-                  reverseDuration: Duration(milliseconds: 150),
-                  child: child
-                );
-              }
-            ),
           ),
         );
       },
