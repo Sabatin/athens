@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
-//TODO: Per il send va hardcoddato il chain ID
-
 class Storage {
   static final Reference _storage = FirebaseStorage.instance.ref();
 

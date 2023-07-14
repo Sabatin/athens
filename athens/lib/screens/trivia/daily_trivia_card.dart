@@ -54,7 +54,7 @@ class DailyTrivia extends StatelessWidget {
                             padding: EdgeInsets.only(left: 15, top: 5),
                             alignment: Alignment.topLeft,
                             child: Text(
-                              'Only ${trivia.requireData.correctAnswers} answered',
+                              'Only 34 answered', //${trivia.requireData.correctAnswers}
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
