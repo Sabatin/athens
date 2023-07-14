@@ -45,7 +45,7 @@ class _SendTokensScreenState extends State<SendTokens> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   fillColor: Colors.white,
-                  hintText: 'Wallet you wont to send tokens',
+                  hintText: 'receiver wallet address',
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -72,7 +72,7 @@ class _SendTokensScreenState extends State<SendTokens> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   fillColor: Colors.white,
-                  hintText: 'Tokens you wont to send',
+                  hintText: 'amount of WWT to send',
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
