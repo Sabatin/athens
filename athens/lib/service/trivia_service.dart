@@ -1,5 +1,6 @@
 import 'package:athens/model/trivia/trivia.dart';
 import 'package:athens/model/trivia/trivia_solution.dart';
+import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/backend.dart';
 
 class TriviaProxy {
@@ -15,6 +16,7 @@ class TriviaProxy {
         {
           'triviaId': trivia.id,
           'answerIndex': answerIndex,
+          'user_token': await Authentication.getAuthToken()
         },
       ),
     );

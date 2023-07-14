@@ -71,9 +71,9 @@ class InviteFriendsCard extends StatelessWidget {
 
   Future<void> _inviteFriends() async {
     await FlutterShare.share(
-        title: 'With your friends you can have a bigger impact!',
+        title: 'Share the word!',
         text: 'With your friends you can have a bigger impact!',
-        linkUrl: 'google.com',
-        chooserTitle: 'With your friends you can have a bigger impact!');
+        chooserTitle: 'Share the word!'
+    );
   }
 }

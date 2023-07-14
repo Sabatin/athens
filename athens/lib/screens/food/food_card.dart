@@ -2,6 +2,7 @@ import 'package:athens/model/food.dart';
 import 'package:athens/model/utils/athens_strings.dart';
 import 'package:athens/screens/order/food_order.dart';
 import 'package:athens/screens/utils/clickable.dart';
+import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,16 @@ class FoodCard extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width - 70;
 
     return Clickable(
-      onTap: () {
+      onTap: () async {
+        if (food.restaurant == null) {
+          OverlayLoader.showLoading(context);
+          try {
+            await food.getRestaurant();
+            OverlayLoader.unshowLoading();
+          } catch(e) {
+            OverlayLoader.unshowLoading();
+          }
+        }
         Routing.slideToPage(context, FoodOrder(food));
       },
       child: Card(

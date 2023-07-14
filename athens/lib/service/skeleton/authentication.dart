@@ -6,7 +6,7 @@ import 'database.dart';
 
 class Authentication {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  static final user = FoodUser();
+  static FoodUser user = FoodUser();
 
   Future<void> signIn(String email, String password) async {
     await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
@@ -29,11 +29,16 @@ class Authentication {
   }
 
   Future<void> signOut() async {
-    return await _firebaseAuth.signOut();
+    await _firebaseAuth.signOut();
+    user = FoodUser();
   }
 
   static String getAuthId() {
     return _firebaseAuth.currentUser!.uid;
+  }
+
+  static Future<String> getAuthToken() async {
+    return await _firebaseAuth.currentUser!.getIdToken();
   }
 
   static bool isLoggedIn() {

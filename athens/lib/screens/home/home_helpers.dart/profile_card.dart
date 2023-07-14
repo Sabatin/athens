@@ -27,9 +27,14 @@ class ProfileCard extends StatelessWidget {
               radius: 22,
               child: Icon(Icons.person),
             ),
-            title: Text(Authentication.user.fullName,
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w500)),
+            title: Text(
+              Authentication.user.fullName,
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)
+            ),
+            subtitle: Text(
+              Authentication.user.level.toString(),
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
+            ),
             trailing: Text(Authentication.user.points.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(

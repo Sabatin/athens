@@ -36,7 +36,7 @@ class FoodService {
     await Backend.post('buyFood', {
       'food_id': food.id,
       'restaurant_id': food.restaurantId,
-      'user_token': Authentication.getAuthId()
+      'user_token': await Authentication.getAuthToken()
     });
   }
 }
