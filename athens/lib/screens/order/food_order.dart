@@ -5,6 +5,7 @@ import 'package:athens/screens/order/order_success.dart';
 import 'package:athens/screens/unlock_wallet_screen.dart';
 import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
+import 'package:athens/screens/utils/prompt.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/food_service.dart';
 import 'package:athens/service/skeleton/blockchain.dart';
@@ -89,6 +90,7 @@ class FoodOrder extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 32),
           Clickable(
             onTap: () async {
               try {
@@ -126,7 +128,7 @@ class FoodOrder extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 12),
           Container(
             alignment: Alignment.center,
             height: 55,
@@ -135,15 +137,16 @@ class FoodOrder extends StatelessWidget {
               onTap: () async {
                 if (Blockchain.credentials == null) {
                   Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
+                    Navigator.pop(context);
                     try {
                       OverlayLoader.showLoading(context);
                       await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
                       final res = await FoodService.buyFood(food, true);
                       OverlayLoader.unshowLoading();
-                      Routing.moveToPage(context, OrderSuccess(res));
+                      Routing.slideToPage(context, OrderSuccess(res));
                     } catch (e) {
                       OverlayLoader.unshowLoading();
-                      //TODO: Display error to the user
+                      Prompt.dialogue(context, 'You don\'t have enough tokens!');
                       print(e);
                     }
                   }));
