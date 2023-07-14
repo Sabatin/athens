@@ -2,6 +2,7 @@ import 'package:athens/model/food.dart';
 import 'package:athens/model/utils/athens_strings.dart';
 import 'package:athens/screens/food/food_card.dart';
 import 'package:athens/screens/order/order_success.dart';
+import 'package:athens/screens/unlock_wallet_screen.dart';
 import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
@@ -92,7 +93,7 @@ class FoodOrder extends StatelessWidget {
             onTap: () async {
               try {
                 OverlayLoader.showLoading(context);
-                final res = await FoodService.buyFood(food);
+                final res = await FoodService.buyFood(food, false);
                 OverlayLoader.unshowLoading();
                 Routing.slideToPage(context, OrderSuccess(res));
               } catch (e) {
@@ -125,46 +126,42 @@ class FoodOrder extends StatelessWidget {
               ),
             ),
           ),
-          Clickable(
-            onTap: () async {
-              try {
-                OverlayLoader.showLoading(context);
-                final res = await FoodService.buyFood(food);
-                OverlayLoader.unshowLoading();
-                Routing.slideToPage(context, OrderSuccess(res));
-              } catch (e) {
-                OverlayLoader.unshowLoading();
-                print(e);
-              }
-            },
-            child: Container(
-              alignment: Alignment.center,
-              height: 55,
-              width: 250,
-              child: FutureBuilder<BigInt>(
-                future: Blockchain.getBalanceOfSelf(),
-                builder: (context, balance) {
-                  Widget child;
-                  if (balance.hasData) {
-                    child = Text(
+          Container(
+            alignment: Alignment.center,
+            height: 55,
+            width: 250,
+            child: FutureBuilder<BigInt>(
+              future: Blockchain.getBalanceOfSelf(),
+              builder: (context, balance) {
+                Widget child;
+                if (balance.hasData) {
+                  child = Clickable(
+                    onTap: () async {
+                      Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
+                        await Blockchain.sendTokensTo(food.restaurant!.publicKey, BigInt.from(food.price));
+                        final res = await FoodService.buyFood(food, true);
+                        Routing.slideToPage(context, OrderSuccess(res));
+                      }));
+                    },
+                    child: Text(
                       'Or buy with ${balance.requireData.toString()} coins',
                       key: ValueKey(0),
                       style: TextStyle(
                           color: theme.secondaryColor,
                           fontWeight: FontWeight.w600,
                           fontSize: 17),
-                    );
-                  }
-                  else {
-                    child = SizedBox(key: ValueKey(1));
-                  }
-                  return AnimatedSwitcher(
-                    duration: Duration(milliseconds: 150),
-                    reverseDuration: Duration(milliseconds: 150),
-                    child: child
+                    ),
                   );
                 }
-              ),
+                else {
+                  child = SizedBox(key: ValueKey(1));
+                }
+                return AnimatedSwitcher(
+                  duration: Duration(milliseconds: 150),
+                  reverseDuration: Duration(milliseconds: 150),
+                  child: child
+                );
+              }
             ),
           ),
         ],

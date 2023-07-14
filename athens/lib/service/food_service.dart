@@ -33,11 +33,12 @@ class FoodService {
     );
   }
 
-  static Future<String> buyFood(Food food) async {
+  static Future<String> buyFood(Food food, bool withTokens) async {
     var res = await Backend.post('buyFood', {
       'food_id': food.id,
       'restaurant_id': food.restaurantId,
-      'user_token': await Authentication.getAuthToken()
+      'user_token': await Authentication.getAuthToken(),
+      'with_tokens': withTokens
     });
 
     return res["tx"];
