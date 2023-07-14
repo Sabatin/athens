@@ -37,6 +37,10 @@ class Authentication {
     return _firebaseAuth.currentUser!.uid;
   }
 
+  static Future<String> getAuthToken() async {
+    return await _firebaseAuth.currentUser!.getIdToken();
+  }
+
   static bool isLoggedIn() {
     return _firebaseAuth.currentUser != null;
   }

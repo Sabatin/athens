@@ -34,7 +34,7 @@ class FoodUser {
     await Database.post('users', Authentication.getAuthId(), {
       'full_name': name,
       'points': 0,
-      'level': 1
+      'level': 1,
     });
     fullName = name;
   }
