@@ -5,7 +5,6 @@ import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/blockchain.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -20,6 +19,22 @@ class UserProfile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset(
+                  'assets/warriors/${Authentication.user.hero}.jpg',
+                  fit: BoxFit.cover,
+                )
+              )
+            ),
+          ],
+        ),
         Container(
           padding: EdgeInsets.only(left: 20, top: 10, bottom: 5),
           child: Text(
@@ -57,25 +72,29 @@ class UserProfile extends StatelessWidget {
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
                         FutureBuilder<double>(
-                            future: Blockchain.getBalanceOfSelf(),
-                            builder: (context, balance) {
-                              Widget child;
-                              if (balance.hasData) {
-                                child = Text(
-                                    key: ValueKey(0),
-                                    balance.requireData.toString(),
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ));
-                              } else {
-                                child = SizedBox(key: ValueKey(1));
-                              }
-                              return AnimatedSwitcher(
-                                  duration: Duration(milliseconds: 100),
-                                  reverseDuration: Duration(milliseconds: 100),
-                                  child: child);
-                            }),
+                          future: Blockchain.getBalanceOfSelf(),
+                          builder: (context, balance) {
+                            Widget child;
+                            if (balance.hasData) {
+                              child = Text(
+                                key: ValueKey(0),
+                                balance.requireData.toString(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  )
+                              );
+                            }
+                            else {
+                              child = Text('', key: ValueKey(1));
+                            }
+                            return AnimatedSwitcher(
+                              duration: Duration(milliseconds: 100),
+                              reverseDuration: Duration(milliseconds: 100),
+                              child: child
+                            );
+                          }
+                        ),
                       ],
                     ),
                   ),
@@ -143,7 +162,7 @@ class UserProfile extends StatelessWidget {
                     await Authentication().signOut();
                     OverlayLoader.unshowLoading();
                     Routing.moveToPage(context, LoginPage());
-                  } catch (e) {
+                  } catch(e) {
                     OverlayLoader.unshowLoading();
                   }
                 },
