@@ -32,8 +32,8 @@ class FoodService {
   }
 
 
-  static Future<void> buyFood(Food food) async {
-    await Backend.post('buyFood', {
+  static Future<String>  buyFood(Food food) async {
+    var res = await Backend.post('buyFood', {
       'food_id': food.id,
       'restaurant_id': food.restaurantId,
       'user_token': await Authentication.getAuthToken()
