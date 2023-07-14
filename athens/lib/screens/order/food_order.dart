@@ -131,45 +131,31 @@ class FoodOrder extends StatelessWidget {
             alignment: Alignment.center,
             height: 55,
             width: 250,
-            child: FutureBuilder<double>(
-                future: Blockchain.getBalanceOfSelf(),
-                builder: (context, balance) {
-                  Widget child;
-                  if (balance.hasData) {
-                    child = Clickable(
-                      onTap: () async {
-                        Routing.slideToPage(context,
-                            UnlockWalletScreen(onUnlocked: () async {
-                              try {
-                                OverlayLoader.showLoading(context);
-                                await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
-                                final res = await FoodService.buyFood(food, true);
-                                OverlayLoader.unshowLoading();
-                                Routing.slideToPage(context, OrderSuccess(res));
-                              } catch (e) {
-                                OverlayLoader.unshowLoading();
-                                //TODO: Display error to the user
-                                print(e);
-                              }
-                        }));
-                      },
-                      child: Text(
-                        'Or buy with ${food.price} coins',
-                        key: ValueKey(0),
-                        style: TextStyle(
-                            color: theme.secondaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17),
-                      ),
-                    );
-                  } else {
-                    child = SizedBox(key: ValueKey(1));
+            child: Clickable(
+              onTap: () async {
+                Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
+                  try {
+                    OverlayLoader.showLoading(context);
+                    await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
+                    final res = await FoodService.buyFood(food, true);
+                    OverlayLoader.unshowLoading();
+                    Routing.slideToPage(context, OrderSuccess(res));
+                  } catch (e) {
+                    OverlayLoader.unshowLoading();
+                    //TODO: Display error to the user
+                    print(e);
                   }
-                  return AnimatedSwitcher(
-                      duration: Duration(milliseconds: 150),
-                      reverseDuration: Duration(milliseconds: 150),
-                      child: child);
-                }),
+                }));
+              },
+              child: Text(
+                'Or buy with ${food.price} coins',
+                key: ValueKey(0),
+                style: TextStyle(
+                    color: theme.secondaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17),
+              ),
+            ),
           ),
         ],
       )),

@@ -1,4 +1,6 @@
 import 'package:athens/screens/utils/clickable.dart';
+import 'package:athens/screens/utils/overlay_loader.dart';
+import 'package:athens/screens/utils/prompt.dart';
 import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
 
@@ -70,31 +72,36 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
               child: Clickable(
                 onTap: () async {
                   try {
+                    OverlayLoader.showLoading(context);
                     await Blockchain.unlockWallet(password);
+                    OverlayLoader.unshowLoading();
                     widget.onUnlocked();
                     Navigator.pop(context);
                   } catch (e) {
-                    print(e);
+                    OverlayLoader.unshowLoading();
+                    Prompt.dialogue(context, 'Wrong password');
                   }
                 },
-                child: ElevatedButton(
-                    onPressed: null ,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.maincolor,
-                      elevation: 6,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
+                child: IgnorePointer(
+                  child: ElevatedButton(
+                      onPressed: null ,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.maincolor,
+                        elevation: 6,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
                         ),
                       ),
-                    ),
-                    child: Text(
-                      'Confirm with password',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17),
-                    )),
+                      child: Text(
+                        'Confirm with password',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
+                      )),
+                ),
               ),
             )
           ],

@@ -1,4 +1,6 @@
 import 'package:athens/screens/utils/clickable.dart';
+import 'package:athens/screens/utils/overlay_loader.dart';
+import 'package:athens/screens/utils/prompt.dart';
 import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
 
@@ -101,12 +103,13 @@ class _SendTokensScreenState extends State<SendTokens> {
                       Routing.slideToPage(context,
                           UnlockWalletScreen(onUnlocked: () async {
                             try {
-                              await Blockchain.sendTokensTo(
-                                  this.walletToSend, this.amoutToSend);
+                              OverlayLoader.showLoading(context);
+                              await Blockchain.sendTokensTo(this.walletToSend, this.amoutToSend);
+                              OverlayLoader.unshowLoading();
                               Navigator.pop(context);
                             } catch (e) {
-                              //TODO: Display error to the user
-                              print(e);
+                              OverlayLoader.unshowLoading();
+                              Prompt.dialogue(context, 'You don\'t have enough tokens!');
                             }
                           }));
                     } catch (e) {
