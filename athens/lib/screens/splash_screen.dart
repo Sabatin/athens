@@ -1,5 +1,6 @@
 import 'package:athens/model/user.dart';
 import 'package:athens/screens/authentication/login_page.dart';
+import 'package:athens/screens/heroes/choose_hero.dart';
 import 'package:athens/screens/overview.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/skeleton/authentication.dart';
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> start() async {
     if (Authentication.isLoggedIn()) {
       await Authentication.user.init();
-      Routing.fadeReplace(context, Overview());
+      Routing.fadeReplace(context, ChooseHero());
     } else {
       Routing.fadeReplace(context, LoginPage());
     }
