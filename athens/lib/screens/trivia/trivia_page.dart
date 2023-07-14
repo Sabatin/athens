@@ -35,34 +35,34 @@ class _TriviaPageState extends State<TriviaPage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
                   gradient: theme.gradientList[1]),
-              child: Center(
+              child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                widget.trivia.question,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColorLight,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 19,
-                ),
-              ))),
+                    widget.trivia.question,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColorLight,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 19,
+                    ),
+                  ))),
           SizedBox(height: 30),
           Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Builder(builder: (context) {
-                final List<Widget> answerTiles = [];
+              child: SingleChildScrollView(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Builder(builder: (context) {
+                    final List<Widget> answerTiles = [];
 
-                for (int i = 0; i < widget.trivia.answers.length; i++) {
-                  answerTiles.add(Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: AnswerTile(widget.trivia, i),
-                  ));
-                }
+                    for (int i = 0; i < widget.trivia.answers.length; i++) {
+                      answerTiles.add(Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: AnswerTile(widget.trivia, i),
+                      ));
+                    }
 
-                return Column(children: answerTiles);
-              }
-            )
-          ))
+                    return Column(children: answerTiles);
+                  })))
         ],
       )),
     );
