@@ -1,4 +1,5 @@
 import 'package:athens/model/food.dart';
+import 'package:athens/model/restaurant.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/backend.dart';
 import 'package:athens/service/skeleton/database.dart';
@@ -7,10 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FoodService {
-  Future<List<Food>> getFood(String restaurantId) async {
-    return (await Database.getAll('restaurants/$restaurantId/food'))
-        .map((foodMap) {
-      return Food.fromMap(foodMap);
+  Future<List<Food>> getFood(Restaurant restaurant) async {
+    return (await Database.getAll('restaurants/${restaurant.id}/food')).map((foodMap) {
+      Food food = Food.fromMap(foodMap);
+      food.restaurant = restaurant;
+      return food;
     }).toList();
   }
 
@@ -28,7 +30,7 @@ class FoodService {
       fadeInCurve: Curves.easeOut,
       fadeOutCurve: Curves.easeOut,
       image: await Storage.getImageURL(
-          'restaurants/${food.restaurantId}/food/${food.id}'),
+          'restaurants/food/${food.id}'),
       fit: BoxFit.cover,
     );
   }

@@ -102,7 +102,7 @@ class RestaurantScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                   height: 240,
                   child: FutureBuilder<List<Food>>(
-                    future: FoodService().getFood(restaurant.id),
+                    future: FoodService().getFood(restaurant),
                     builder: (context, food) {
                       if (food.hasData) {
                         return ListView.separated(

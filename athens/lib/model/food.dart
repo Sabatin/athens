@@ -27,7 +27,6 @@ class Food {
     if (restaurant != null) {
       return;
     }
-    restaurant =
-        Restaurant.fromMap(await Database.get('restaurants', restaurantId));
+    restaurant = Restaurant.fromMap(await Database.get('restaurants', restaurantId));
   }
 }

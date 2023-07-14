@@ -126,6 +126,7 @@ class FoodOrder extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 16),
           Container(
             alignment: Alignment.center,
             height: 55,
