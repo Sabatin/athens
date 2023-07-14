@@ -19,7 +19,11 @@ class Storage {
       try {
         return await _storage.child('$path.jpeg').getDownloadURL();
       } catch (e) {
-        return await _storage.child('$path.webp').getDownloadURL();
+        try {
+          return await _storage.child('$path.webp').getDownloadURL();
+        } catch (e) {
+          return await _storage.child('$path.png').getDownloadURL();
+        }
       }
     }
   }
