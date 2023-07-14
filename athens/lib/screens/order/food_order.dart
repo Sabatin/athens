@@ -133,19 +133,32 @@ class FoodOrder extends StatelessWidget {
             width: 250,
             child: Clickable(
               onTap: () async {
-                Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
-                  try {
-                    OverlayLoader.showLoading(context);
-                    await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
-                    final res = await FoodService.buyFood(food, true);
-                    OverlayLoader.unshowLoading();
-                    Routing.moveToPage(context, OrderSuccess(res));
-                  } catch (e) {
-                    OverlayLoader.unshowLoading();
-                    //TODO: Display error to the user
-                    print(e);
-                  }
-                }));
+                if (Blockchain.credentials == null) {
+                  Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
+                    try {
+                      OverlayLoader.showLoading(context);
+                      await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
+                      final res = await FoodService.buyFood(food, true);
+                      OverlayLoader.unshowLoading();
+                      Routing.moveToPage(context, OrderSuccess(res));
+                    } catch (e) {
+                      OverlayLoader.unshowLoading();
+                      //TODO: Display error to the user
+                      print(e);
+                    }
+                  }));
+                }
+                try {
+                  OverlayLoader.showLoading(context);
+                  await Blockchain.sendTokensTo(food.restaurant!.publicKey, double.parse(food.price.toString()));
+                  final res = await FoodService.buyFood(food, true);
+                  OverlayLoader.unshowLoading();
+                  Routing.slideToPage(context, OrderSuccess(res));
+                } catch (e) {
+                  OverlayLoader.unshowLoading();
+                  //TODO: Display error to the user
+                  print(e);
+                }
               },
               child: Text(
                 'Or buy with ${food.price} coins',
