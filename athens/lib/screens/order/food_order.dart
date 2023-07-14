@@ -131,42 +131,7 @@ class FoodOrder extends StatelessWidget {
             alignment: Alignment.center,
             height: 55,
             width: 250,
-<<<<<<< Updated upstream
             child: FutureBuilder<double>(
-              future: Blockchain.getBalanceOfSelf(),
-              builder: (context, balance) {
-                Widget child;
-                if (balance.hasData) {
-                  child = Clickable(
-                    onTap: () async {
-                      Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
-                        await Blockchain.sendTokensTo(food.restaurant!.publicKey, food.price);
-                        final res = await FoodService.buyFood(food, true);
-                        Routing.slideToPage(context, OrderSuccess(res));
-                      }));
-                    },
-                    child: Text(
-                      'Or buy with ${food.price} coins',
-                      key: ValueKey(0),
-                      style: TextStyle(
-                          color: theme.secondaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17),
-                    ),
-                  );
-                }
-                else {
-                  child = SizedBox(key: ValueKey(1));
-                }
-                return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 150),
-                  reverseDuration: Duration(milliseconds: 150),
-                  child: child
-                );
-              }
-            ),
-=======
-            child: FutureBuilder<int>(
                 future: Blockchain.getBalanceOfSelf(),
                 builder: (context, balance) {
                   Widget child;
@@ -198,7 +163,6 @@ class FoodOrder extends StatelessWidget {
                       reverseDuration: Duration(milliseconds: 150),
                       child: child);
                 }),
->>>>>>> Stashed changes
           ),
         ],
       )),
