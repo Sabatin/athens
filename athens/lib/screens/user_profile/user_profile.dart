@@ -6,6 +6,7 @@ import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/skeleton/authentication.dart';
 import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../constants/theme_model.dart';
 
@@ -257,7 +258,10 @@ class UserProfile extends StatelessWidget {
             TextButton(
               child: Text('Copy Address',
                   style: TextStyle(color: theme.maincolor)),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: Authentication.user.publicKey));
+                Navigator.of(context).pop();
+              },
             ),
           ],
         );
