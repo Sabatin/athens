@@ -17,6 +17,7 @@ class TriviaProxy {
         'user_token': await Authentication.getAuthToken()
       },
     );
+
     if (triviaSolution['correctAnswerIndex'] == answerIndex) {
       Authentication.user.points.value = Authentication.user.points.value + trivia.availablePoints;
     }

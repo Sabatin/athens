@@ -119,12 +119,17 @@ class UserProfile extends StatelessWidget {
                         Icon(Icons.emoji_events_outlined,
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
-                        Text(
-                          Authentication.user.points.value.toString(),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
+                        ValueListenableBuilder<int>(
+                          valueListenable: Authentication.user.points,
+                          builder: (context, points, child) {
+                            return Text(
+                              points.toString(),
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            );
+                          }
                         ),
                       ],
                     ),
