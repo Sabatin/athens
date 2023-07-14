@@ -19,15 +19,15 @@ class ChooseHero extends StatelessWidget {
                   child: ListView(
                     padding: EdgeInsets.symmetric(vertical: 32),
                     children: [
-                      HeroCard(FoodHero('Pizza', 'description')),
+                      HeroCard(FoodHero('Pizza', 'Armed with spatula and cutter, the Pizza Warrior is a relentless defender of authentic pies.')),
                       SizedBox(height: 16),
-                      HeroCard(FoodHero('Kebab', 'description')),
+                      HeroCard(FoodHero('Kebab', 'Clad in tinfoil armor, the Kebab Warrior skewers the ordinary, grilling up justice and sizzling spectacle in his quest for the ultimate skewer.')),
                       SizedBox(height: 16),
-                      HeroCard(FoodHero('Pita', 'description')),
+                      HeroCard(FoodHero('Pita', 'In the culinary arena of flatbreads, the Pita Warrior reigns supreme, skillfully pocketing adversaries while serving up a fresh dose of falafel-filled fortitude.')),
                       SizedBox(height: 16),
-                      HeroCard(FoodHero('Pizza', 'description')),
+                      HeroCard(FoodHero('Fruit', 'Brandishing a banana blade, the Fruit Warrior jousts in a juicy jungle of vitamins, his armor polished to a citrus sheen.')),
                       SizedBox(height: 16),
-                      HeroCard(FoodHero('Fruit', 'description'))
+                      HeroCard(FoodHero('Sushi', 'With a roll of his katana, the Sushi Warrior deftly slices through the mundane.')),
                     ],
                   )
                 )

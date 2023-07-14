@@ -22,24 +22,24 @@ class HeroCard extends StatelessWidget {
         Routing.moveToPage(context, Overview());
       },
       child: Container(
-        height: 150,
+        height: 160,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(15),
           border: Border.all(color: Colors.black)
         ),
         margin: EdgeInsets.symmetric(horizontal: 16),
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(12),
         child: Row(
           children: [
             SizedBox(
-              height: 130,
-              width: 130,
+              height: 120,
+              width: 120,
               child: Image.asset(
                 'assets/warriors/${hero.image}',
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 32),
+            SizedBox(width: 24),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,9 +47,12 @@ class HeroCard extends StatelessWidget {
                   hero.name,
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
-                SizedBox(height: 16),
-                Text(
-                  hero.description
+                SizedBox(height: 10),
+                SizedBox(
+                  width: 190,
+                  child: Text(
+                    hero.description
+                  ),
                 )
               ],
             )

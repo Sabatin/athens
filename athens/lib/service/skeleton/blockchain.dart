@@ -12,7 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:web3dart/web3dart.dart';
 
 class Blockchain {
-  static late Credentials credentials;
+  static Credentials? credentials;
   static final String apiUrl = 'https://rpc.sepolia.org/';
   static final String WWTAddress = '0x7B717b445Ff27d5769E6a314235bC8D617dc80b9';
   static final int chainId = 11155111;
@@ -34,8 +34,10 @@ class Blockchain {
     credentials = await randomCred;
 
     await Database.update('users', Authentication.getAuthId(), {
-      'public_key': credentials.address.hex
+      'public_key': credentials?.address.hex
     });
+
+    Authentication.user.publicKey = credentials!.address.hex;
 
     try {
       final Wallet wallet = Wallet.createNew(credentials as EthPrivateKey, password, Random.secure());
@@ -79,7 +81,7 @@ class Blockchain {
       function: WWTContract.function('transfer'),
       parameters: [EthereumAddress.fromHex(address), amountInWei],
     );
-    final response = await client.sendTransaction(credentials, transaction, chainId: chainId);
+    final response = await client.sendTransaction(credentials!, transaction, chainId: chainId);
     return response;
   }
 

@@ -140,14 +140,20 @@ class FoodOrder extends StatelessWidget {
                       onTap: () async {
                         Routing.slideToPage(context,
                             UnlockWalletScreen(onUnlocked: () async {
-                          await Blockchain.sendTokensTo(
-                              food.restaurant!.publicKey, food.price);
-                          final res = await FoodService.buyFood(food, true);
-                          Routing.slideToPage(context, OrderSuccess(res));
+                              try {
+                                await Blockchain.sendTokensTo(
+                                    food.restaurant!.publicKey, food.price);
+                                final res = await FoodService.buyFood(
+                                    food, true);
+                                Routing.slideToPage(context, OrderSuccess(res));
+                              } catch (e) {
+                              // TODO: handle error
+                                print(e);
+                              }
                         }));
                       },
                       child: Text(
-                        'Or buy with ${balance.requireData.toString()} coins',
+                        'Or buy with ${food.price} coins',
                         key: ValueKey(0),
                         style: TextStyle(
                             color: theme.secondaryColor,

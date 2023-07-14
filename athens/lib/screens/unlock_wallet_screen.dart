@@ -20,6 +20,10 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
   @override
   void initState() {
     password = '';
+    if (Blockchain.credentials != null) {
+      widget.onUnlocked();
+      Navigator.pop(context);
+    }
     super.initState();
   }
 
@@ -74,7 +78,7 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
                   }
                 },
                 child: ElevatedButton(
-                    onPressed: null,
+                    onPressed: null ,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.maincolor,
                       elevation: 6,

@@ -21,6 +21,6 @@ class Sandbox extends StatelessWidget {
 
 Future<void> test() async {
   await Blockchain.generatePrivateKey("aaaa");
-  print(await Blockchain.credentials.address.hex);
+  print(await Blockchain.credentials!.address.hex);
   // print(await Blockchain.getBalanceOfSelf());
 }
