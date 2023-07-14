@@ -132,38 +132,37 @@ class FoodOrder extends StatelessWidget {
             height: 55,
             width: 250,
             child: FutureBuilder<double>(
-              future: Blockchain.getBalanceOfSelf(),
-              builder: (context, balance) {
-                Widget child;
-                if (balance.hasData) {
-                  child = Clickable(
-                    onTap: () async {
-                      Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
-                        await Blockchain.sendTokensTo(food.restaurant!.publicKey, food.price);
-                        final res = await FoodService.buyFood(food, true);
-                        Routing.slideToPage(context, OrderSuccess(res));
-                      }));
-                    },
-                    child: Text(
-                      'Or buy with ${balance.requireData.toString()} coins',
-                      key: ValueKey(0),
-                      style: TextStyle(
-                          color: theme.secondaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17),
-                    ),
-                  );
-                }
-                else {
-                  child = SizedBox(key: ValueKey(1));
-                }
-                return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 150),
-                  reverseDuration: Duration(milliseconds: 150),
-                  child: child
-                );
-              }
-            ),
+                future: Blockchain.getBalanceOfSelf(),
+                builder: (context, balance) {
+                  Widget child;
+                  if (balance.hasData) {
+                    child = Clickable(
+                      onTap: () async {
+                        Routing.slideToPage(context,
+                            UnlockWalletScreen(onUnlocked: () async {
+                          await Blockchain.sendTokensTo(
+                              food.restaurant!.publicKey, food.price);
+                          final res = await FoodService.buyFood(food, true);
+                          Routing.slideToPage(context, OrderSuccess(res));
+                        }));
+                      },
+                      child: Text(
+                        'Or buy with ${balance.requireData.toString()} coins',
+                        key: ValueKey(0),
+                        style: TextStyle(
+                            color: theme.secondaryColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
+                      ),
+                    );
+                  } else {
+                    child = SizedBox(key: ValueKey(1));
+                  }
+                  return AnimatedSwitcher(
+                      duration: Duration(milliseconds: 150),
+                      reverseDuration: Duration(milliseconds: 150),
+                      child: child);
+                }),
           ),
         ],
       )),
