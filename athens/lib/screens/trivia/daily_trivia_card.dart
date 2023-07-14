@@ -43,7 +43,9 @@ class DailyTrivia extends StatelessWidget {
                             padding: EdgeInsets.only(left: 15, top: 15),
                             alignment: Alignment.topLeft,
                             child: Text(
-                              "Daily Quest\nGet your ${trivia.requireData.availablePoints} points!",
+                              trivia.requireData.availablePoints > 0 ?
+                              "Daily Quest\nGet your ${trivia.requireData.availablePoints} points!" :
+                              'Daily quest\nThere are no more points available',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
