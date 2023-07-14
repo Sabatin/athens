@@ -14,7 +14,7 @@ class ChooseHero extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 16),
-                Text("Choose your hero", style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
+                Text("Choose your warrior!", style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
                 Expanded(
                   child: ListView(
                     padding: EdgeInsets.symmetric(vertical: 32),
