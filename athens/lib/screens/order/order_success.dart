@@ -32,7 +32,7 @@ class OrderSuccess extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             Text(
-              'Thank you for your order. Your order has been successfully completed.',
+              'Thank you for your order. Your order has been successfully completed.\n Tx of your reward: $res',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0),
             ),

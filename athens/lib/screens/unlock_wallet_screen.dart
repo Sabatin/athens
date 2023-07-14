@@ -78,7 +78,7 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
                   }
                 },
                 child: ElevatedButton(
-                    onPressed: null,
+                    onPressed: null ,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.maincolor,
                       elevation: 6,

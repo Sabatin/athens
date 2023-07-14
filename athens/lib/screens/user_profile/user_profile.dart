@@ -137,8 +137,20 @@ class UserProfile extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
+                leading: Icon(Icons.settings_outlined, color: Colors.black),
+                title: Text('Settings'),
+                trailing: Icon(Icons.arrow_forward_ios,
+                    color: Colors.black, size: 20),
+              ),
+              ListTile(
                 leading: Icon(Icons.store_outlined, color: Colors.black),
                 title: Text('Orders'),
+                trailing: Icon(Icons.arrow_forward_ios,
+                    color: Colors.black, size: 20),
+              ),
+              ListTile(
+                leading: Icon(Icons.help_outline, color: Colors.black),
+                title: Text('Help Center'),
                 trailing: Icon(Icons.arrow_forward_ios,
                     color: Colors.black, size: 20),
               ),
@@ -183,55 +195,72 @@ class UserProfile extends StatelessWidget {
               Container(
                 height: 50,
                 width: 175,
-                child: IgnorePointer(
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.maincolor,
-                        elevation: 6,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
+                child: ElevatedButton(
+                    onPressed: () =>
+                        Routing.slideToPage(context, SendTokensMotherFucker()),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.maincolor,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
                         ),
                       ),
-                      child: Text(
-                        'Send',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17),
-                      )),
-                ),
+                    ),
+                    child: Text(
+                      'Send',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17),
+                    )),
               ),
               Container(
                 height: 50,
                 width: 175,
-                child: IgnorePointer(
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.maincolor,
-                        elevation: 6,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
+                child: ElevatedButton(
+                    onPressed: () => _showMyDialog(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.maincolor,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
                         ),
                       ),
-                      child: Text(
-                        'Receive',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17),
-                      )),
-                ),
+                    ),
+                    child: Text(
+                      'Receive',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17),
+                    )),
               ),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Receive Tokens'),
+          content: Text(Authentication.user.publicKey),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Copy Address',
+                  style: TextStyle(color: theme.maincolor)),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
     );
   }
 }
