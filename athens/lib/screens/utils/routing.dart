@@ -38,8 +38,7 @@ class Routing {
     }
   }
 
-  static Future<void> moveToPage(BuildContext context, Widget target,
-      {dynamic arguments}) async {
+  static Future<void> moveToPage(BuildContext context, Widget target, {dynamic arguments}) async {
     if (Platform.isIOS) {
       await Navigator.of(context, rootNavigator: true).pushReplacement(CupertinoPageRoute(builder: (context) {
         return target;
@@ -71,5 +70,29 @@ class Routing {
             arguments: arguments,
           )));
     }
+  }
+
+  static void fadeReplace(BuildContext context, Widget target) {
+    Navigator.pushReplacement(context,
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 200),
+          reverseTransitionDuration: Duration(milliseconds: 200),
+          transitionsBuilder: (BuildContext context, Animation<double> firstAnimation, Animation<double> secondAnimation, Widget child) {
+            return FadeTransition(
+              opacity: Tween<double>(
+                begin: 0,
+                end: 1,
+              ).animate(CurvedAnimation(
+                  parent: firstAnimation,
+                  curve: Curves.easeOut
+              )),
+              child: child,
+            );
+          },
+          pageBuilder: (BuildContext context, Animation<double> firstAnimation, Animation<double> secondAnimation) {
+            return target;
+          },
+        )
+    );
   }
 }

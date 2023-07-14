@@ -16,9 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> start() async {
     if (Authentication.isLoggedIn()) {
       await Authentication.user.init();
-      Routing.moveToPage(context, Overview());
+      Routing.fadeReplace(context, Overview());
     } else {
-      Routing.moveToPage(context, LoginPage());
+      Routing.fadeReplace(context, LoginPage());
     }
   }
 
