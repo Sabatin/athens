@@ -17,8 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (Authentication.isLoggedIn()) {
       await Authentication.user.init();
       Routing.moveToPage(context, Overview());
-    }
-    else {
+    } else {
       Routing.moveToPage(context, LoginPage());
     }
   }
@@ -34,11 +33,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          'LOGO'
-        )
-      )
-    );
+        backgroundColor: Color.fromRGBO(247, 242, 231, 1),
+        body: Container(
+          alignment: Alignment.center,
+          child: Image.asset(
+            'assets/icons/icon.png',
+            height: 600,
+            width: 600,
+            fit: BoxFit.contain,
+            key: ValueKey(1),
+          ),
+        ));
   }
 }
