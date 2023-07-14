@@ -184,6 +184,7 @@ class RankingPage extends StatelessWidget {
     return ListTile(
       title: Text('  ' + user.fullName,
           style: TextStyle(color: color, fontWeight: FontWeight.w500)),
+      subtitle: Text(user.level.toString(), style: TextStyle(color: Colors.red, fontWeight: FontWeight.w900),),
       trailing: Text(user.points.toString(),
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.w500, color: color)),
