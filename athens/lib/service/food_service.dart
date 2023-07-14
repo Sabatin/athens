@@ -23,6 +23,8 @@ class FoodService {
   }
 
   static Future<FadeInImage> getFoodImage(Food food) async {
+    print('IDDIO');
+    print(food.id);
     return FadeInImage.memoryNetwork(
       placeholder: kTransparentImage,
       fadeInDuration: Duration(milliseconds: 150),
