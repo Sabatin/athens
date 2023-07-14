@@ -95,36 +95,7 @@ class UserProfile extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Card(
-                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                        gradient: theme.gradientList[5],
-                        borderRadius: containerRadius),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.delivery_dining_outlined,
-                            size: 36, color: Colors.white),
-                        SizedBox(height: 5),
-                        Text(
-                          '15',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),
@@ -150,18 +121,23 @@ class UserProfile extends StatelessWidget {
                 trailing: Icon(Icons.arrow_forward_ios,
                     color: Colors.black, size: 20),
               ),
-              ListTile(
-                leading: Icon(Icons.article_outlined, color: Colors.black),
-                title: Text('Blog'),
-                trailing: Icon(Icons.arrow_forward_ios,
-                    color: Colors.black, size: 20),
-              ),
-              ListTile(
-                leading:
-                    Icon(Icons.library_books_outlined, color: Colors.black),
-                title: Text('Legal stuff'),
-                trailing: Icon(Icons.arrow_forward_ios,
-                    color: Colors.black, size: 20),
+              Clickable(
+                onTap: () async {
+                  OverlayLoader.showLoading(context);
+                  try {
+                    await Authentication().signOut();
+                    OverlayLoader.unshowLoading();
+                    Routing.moveToPage(context, LoginPage());
+                  } catch(e) {
+                    OverlayLoader.unshowLoading();
+                  }
+                },
+                child: ListTile(
+                  leading: Icon(Icons.logout, color: Colors.black),
+                  title: Text('Log Out'),
+                  trailing: Icon(Icons.arrow_forward_ios,
+                      color: Colors.black, size: 20),
+                ),
               ),
             ],
           ),
@@ -169,7 +145,7 @@ class UserProfile extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(left: 20, top: 10),
           child: Text(
-            'TRASFER YOUR COINS',
+            'TRANSFER YOUR COINS',
             style: TextStyle(
               fontSize: 18,
               color: theme.secondaryColor,

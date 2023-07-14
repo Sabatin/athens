@@ -25,8 +25,10 @@ class RankingPage extends StatelessWidget {
             child: FutureBuilder<List<FoodUser>>(
               future: Database.getTopUsers(),
               builder: (context, users) {
+                Widget child;
                 if (users.hasData) {
-                  return ListView.builder(
+                  child = ListView.builder(
+                    key: ValueKey(1),
                     physics: BouncingScrollPhysics(),
                     itemCount: users.requireData.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -46,7 +48,14 @@ class RankingPage extends StatelessWidget {
                     },
                   );
                 }
-                return LoadingIndicator();
+                else {
+                  child = SizedBox(key: ValueKey(0));
+                }
+                return AnimatedSwitcher(
+                  duration: Duration(milliseconds: 150),
+                  reverseDuration: Duration(milliseconds: 150),
+                  child: child
+                );
               }
             ),
           ),

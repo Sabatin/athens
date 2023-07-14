@@ -6,11 +6,15 @@ class FoodUser {
   String publicKey = '';
   int points = 0;
   int level = 1;
+  String hero = '';
 
   FoodUser();
   FoodUser.fromMap(Map<String, dynamic> userMap) {
     fullName = userMap['full_name'];
     points = userMap['points'];
+    if (userMap.containsKey('hero')) {
+      hero = userMap['hero'];
+    }
   }
 
   Future<void> init() async {
@@ -24,6 +28,9 @@ class FoodUser {
         level = userData['level'];
         if (userData.containsKey('public_key')) {
           publicKey = userData['public_key'];
+        }
+        if (userData.containsKey('hero')) {
+          hero = userData['hero'];
         }
       }
     } catch(ignored) {

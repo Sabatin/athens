@@ -22,10 +22,22 @@ class ProfileCard extends StatelessWidget {
           decoration: BoxDecoration(
               gradient: theme.gradient, borderRadius: containerRadius),
           child: ListTile(
-            leading: CircleAvatar(
+            leading: Authentication.user.hero.isEmpty ?
+            CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 22,
               child: Icon(Icons.person),
+            ) :
+            SizedBox(
+              height: 44,
+              width: 44,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset(
+                  'assets/warriors/${Authentication.user.hero}.jpg',
+                  fit: BoxFit.cover,
+                )
+              )
             ),
             title: Text(
               Authentication.user.fullName,

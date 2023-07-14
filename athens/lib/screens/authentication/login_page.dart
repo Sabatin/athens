@@ -1,5 +1,6 @@
 import 'package:athens/constants/theme_model.dart';
 import 'package:athens/model/user.dart';
+import 'package:athens/screens/heroes/choose_hero.dart';
 import 'package:athens/screens/overview.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/skeleton/authentication.dart';
@@ -146,11 +147,11 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 17),
                           )
                         : const CircularProgressIndicator(
-                            backgroundColor: Colors.white),
+                        backgroundColor: Colors.white),
                     onPressed: () async {
                       bool submitted = await _submitForm();
                       if (submitted) {
-                        Routing.slideToPage(context, Overview());
+                        Routing.moveToPage(context, ChooseHero());
                       }
                     },
                   ),
