@@ -78,10 +78,7 @@ class Blockchain {
   }
 
 
-  static Future<BigInt>  getBalanceOfSelf() async {
-    if (credentials == null) {
-     throw Exception('No credentials');
-    }
-    return getBalanceOf(credentials.address.hex);
+  static Future<BigInt> getBalanceOfSelf() async {
+    return await getBalanceOf(Authentication.user.publicKey);
   }
 }

@@ -25,15 +25,17 @@ class FoodOrder extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-            height: 240,
-            child: FoodCard(food),
+          IgnorePointer(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+              height: 240,
+              child: FoodCard(food),
+            ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             alignment: Alignment.centerLeft,
-            child: Text('Order recup - ${food.restaurant!.name}',
+            child: Text('Order recap - ${food.restaurant!.name}',
                 style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
           ),
           Padding(
@@ -139,23 +141,30 @@ class FoodOrder extends StatelessWidget {
               alignment: Alignment.center,
               height: 55,
               width: 250,
-              child: Text(
-                'Or buy with ${food.price} coins',
-                style: TextStyle(
-                    color: theme.secondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
+              child: FutureBuilder<BigInt>(
+                future: Blockchain.getBalanceOfSelf(),
+                builder: (context, balance) {
+                  Widget child;
+                  if (balance.hasData) {
+                    child = Text(
+                      'Or buy with ${balance.requireData.toString()} coins',
+                      key: ValueKey(0),
+                      style: TextStyle(
+                          color: theme.secondaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17),
+                    );
+                  }
+                  else {
+                    child = SizedBox(key: ValueKey(1));
+                  }
+                  return AnimatedSwitcher(
+                    duration: Duration(milliseconds: 150),
+                    reverseDuration: Duration(milliseconds: 150),
+                    child: child
+                  );
+                }
               ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            height: 25,
-            width: 250,
-            child: Text(
-              (Blockchain.getBalanceOfSelf().then((value) => value))
-                  .toString(), //TODO: get balance
-              style: TextStyle(fontSize: 14),
             ),
           ),
         ],
