@@ -6,6 +6,7 @@ import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/food_service.dart';
+import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -89,9 +90,9 @@ class FoodOrder extends StatelessWidget {
             onTap: () async {
               try {
                 OverlayLoader.showLoading(context);
-                await FoodService.buyFood(food);
+                final res = await FoodService.buyFood(food);
                 OverlayLoader.unshowLoading();
-                Routing.slideToPage(context, OrderSuccess());
+                Routing.slideToPage(context, OrderSuccess(res));
               } catch (e) {
                 OverlayLoader.unshowLoading();
                 print(e);
@@ -126,9 +127,9 @@ class FoodOrder extends StatelessWidget {
             onTap: () async {
               try {
                 OverlayLoader.showLoading(context);
-                await FoodService.buyFood(food);
+                final res = await FoodService.buyFood(food);
                 OverlayLoader.unshowLoading();
-                Routing.slideToPage(context, OrderSuccess());
+                Routing.slideToPage(context, OrderSuccess(res));
               } catch (e) {
                 OverlayLoader.unshowLoading();
                 print(e);
@@ -152,7 +153,8 @@ class FoodOrder extends StatelessWidget {
             height: 25,
             width: 250,
             child: Text(
-              '(Balance: 3000 coins)',
+              (Blockchain.getBalanceOfSelf().then((value) => value))
+                  .toString(), //TODO: get balance
               style: TextStyle(fontSize: 14),
             ),
           ),

@@ -8,7 +8,8 @@ import 'package:transparent_image/transparent_image.dart';
 
 class FoodService {
   Future<List<Food>> getFood(String restaurantId) async {
-    return (await Database.getAll('restaurants/$restaurantId/food')).map((foodMap) {
+    return (await Database.getAll('restaurants/$restaurantId/food'))
+        .map((foodMap) {
       return Food.fromMap(foodMap);
     }).toList();
   }
@@ -26,18 +27,19 @@ class FoodService {
       fadeOutDuration: Duration(milliseconds: 150),
       fadeInCurve: Curves.easeOut,
       fadeOutCurve: Curves.easeOut,
-      image: await Storage.getImageURL('restaurants/${food.restaurantId}/food/${food.id}'),
+      image: await Storage.getImageURL(
+          'restaurants/${food.restaurantId}/food/${food.id}'),
       fit: BoxFit.cover,
     );
   }
 
-
-  static Future<String>  buyFood(Food food) async {
+  static Future<String> buyFood(Food food) async {
     var res = await Backend.post('buyFood', {
       'food_id': food.id,
       'restaurant_id': food.restaurantId,
       'user_token': await Authentication.getAuthToken()
     });
+
     return res["tx"];
   }
 }
