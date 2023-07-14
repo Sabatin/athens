@@ -38,5 +38,6 @@ class FoodService {
       'restaurant_id': food.restaurantId,
       'user_token': await Authentication.getAuthToken()
     });
+    return res["tx"];
   }
 }
