@@ -23,6 +23,35 @@ class RankingPage extends StatelessWidget {
           child: ScrollConfiguration(
             behavior: ScrollBehavior(),
             child: FutureBuilder<List<FoodUser>>(
+                future: Database.getTopUsers(),
+                builder: (context, users) {
+                  if (users.hasData) {
+                    return ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemCount: users.requireData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == 0)
+                          return Container();
+                        else {
+                          final int i = index - 1;
+                          if (i == 0) //Primo posto
+                            return _firstTile(
+                                context, users.requireData[index]);
+                          else if (i == 1) //Secondo posto
+                            return _secondTile(
+                                context, i, users.requireData[index]);
+                          else if (i == 2) // Terzo posto
+                            return _thirdTile(
+                                context, i, users.requireData[index]);
+                          else
+                            return _rankingTile(
+                                context, i, users.requireData[index]);
+                        }
+                      },
+                    );
+                  }
+                  return LoadingIndicator();
+                }),
               future: Database.getTopUsers(),
               builder: (context, users) {
                 Widget child;
@@ -80,7 +109,7 @@ class RankingPage extends StatelessWidget {
             shape: cardShape,
             elevation: 20,
             child: Container(
-              height: cardHeight,
+              height: cardHeight + 10,
               width: width - 65,
               decoration: BoxDecoration(
                   gradient: theme.gradient, borderRadius: containerRadius),
@@ -113,7 +142,7 @@ class RankingPage extends StatelessWidget {
             shape: cardShape,
             elevation: 15,
             child: Container(
-              height: cardHeight,
+              height: cardHeight + 10,
               width: width - 70,
               decoration: BoxDecoration(
                   gradient: theme.gradientList[2],
@@ -147,7 +176,7 @@ class RankingPage extends StatelessWidget {
             shape: cardShape,
             elevation: 10,
             child: Container(
-              height: cardHeight,
+              height: cardHeight + 10,
               width: width - 75,
               decoration: BoxDecoration(
                   gradient: theme.gradientList[1],
@@ -178,7 +207,7 @@ class RankingPage extends StatelessWidget {
             shape: cardShape,
             elevation: 4,
             child: Container(
-              height: cardHeight,
+              height: cardHeight + 10,
               width: width - 75,
               decoration: BoxDecoration(borderRadius: containerRadius),
               child: _podioTiles(user),
@@ -190,13 +219,20 @@ class RankingPage extends StatelessWidget {
   }
 
   Widget _podioTiles(FoodUser user, [Color? color]) {
-    return ListTile(
-      title: Text('  ' + user.fullName,
-          style: TextStyle(color: color, fontWeight: FontWeight.w500)),
-      subtitle: Text(user.level.toString(), style: TextStyle(color: Colors.red, fontWeight: FontWeight.w900),),
-      trailing: Text(user.points.toString(),
+    return Container(
+      padding: EdgeInsets.only(right: 10, bottom: 15, left: 10),
+      child: ListTile(
+        title: Text(user.fullName,
+            style: TextStyle(color: color, fontWeight: FontWeight.w500)),
+        subtitle: Text(
+          'LV.${user.level.toString()}',
           style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: color)),
+              color: color, fontSize: 13, fontWeight: FontWeight.w500),
+        ),
+        trailing: Text(user.points.toString(),
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.w500, color: color)),
+      ),
     );
   }
 }

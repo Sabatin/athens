@@ -6,6 +6,7 @@ import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/food_service.dart';
+import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -32,7 +33,7 @@ class FoodOrder extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             alignment: Alignment.centerLeft,
-            child: Text('Order recup - Pizzeria Bella Napoli',
+            child: Text('Order recup - ${food.restaurant!.name}',
                 style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
           ),
           Padding(
@@ -64,14 +65,14 @@ class FoodOrder extends StatelessWidget {
                           )),
                     ),
                     Container(
-                      child: Text('Via Roma 1',
+                      child: Text(food.restaurant!.road,
                           style: TextStyle(fontWeight: FontWeight.w500)),
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
                 Container(
-                  child: Text('Pizza Margherita',
+                  child: Text(food.name,
                       style: TextStyle(
                           fontSize: 16,
                           color: theme.secondaryColor,
@@ -89,9 +90,9 @@ class FoodOrder extends StatelessWidget {
             onTap: () async {
               try {
                 OverlayLoader.showLoading(context);
-                await FoodService.buyFood(food);
+                final res = await FoodService.buyFood(food);
                 OverlayLoader.unshowLoading();
-                Routing.slideToPage(context, OrderSuccess());
+                Routing.slideToPage(context, OrderSuccess(res));
               } catch (e) {
                 OverlayLoader.unshowLoading();
                 print(e);
@@ -99,7 +100,7 @@ class FoodOrder extends StatelessWidget {
             },
             child: Container(
               height: 55,
-              width: 185,
+              width: 250,
               child: IgnorePointer(
                 child: ElevatedButton(
                     onPressed: () {},
@@ -126,9 +127,9 @@ class FoodOrder extends StatelessWidget {
             onTap: () async {
               try {
                 OverlayLoader.showLoading(context);
-                await FoodService.buyFood(food);
+                final res = await FoodService.buyFood(food);
                 OverlayLoader.unshowLoading();
-                Routing.slideToPage(context, OrderSuccess());
+                Routing.slideToPage(context, OrderSuccess(res));
               } catch (e) {
                 OverlayLoader.unshowLoading();
                 print(e);
@@ -139,7 +140,7 @@ class FoodOrder extends StatelessWidget {
               height: 55,
               width: 250,
               child: Text(
-                'Or buy with 3000 coins',
+                'Or buy with ${food.price} coins',
                 style: TextStyle(
                     color: theme.secondaryColor,
                     fontWeight: FontWeight.w600,
@@ -152,7 +153,8 @@ class FoodOrder extends StatelessWidget {
             height: 25,
             width: 250,
             child: Text(
-              '(Balance: 3000 coins)',
+              (Blockchain.getBalanceOfSelf().then((value) => value))
+                  .toString(), //TODO: get balance
               style: TextStyle(fontSize: 14),
             ),
           ),
