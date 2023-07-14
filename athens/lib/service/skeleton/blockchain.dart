@@ -31,9 +31,9 @@ class Blockchain {
     final EthPrivateKey randomCred = EthPrivateKey.createRandom(Random.secure());
     credentials = await randomCred;
 
-    // await Database.update('users', Authentication.getAuthId(), {
-    //   'public_key': credentials.address.hex
-    // });
+    await Database.update('users', Authentication.getAuthId(), {
+      'public_key': credentials.address.hex
+    });
 
     try {
       final Wallet wallet = Wallet.createNew(credentials as EthPrivateKey, password, Random.secure());
