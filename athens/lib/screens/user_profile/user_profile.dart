@@ -3,6 +3,7 @@ import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:athens/service/skeleton/authentication.dart';
+import 'package:athens/service/skeleton/blockchain.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme_model.dart';
@@ -53,12 +54,29 @@ class UserProfile extends StatelessWidget {
                         Icon(Icons.currency_bitcoin_outlined,
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
-                        Text(
-                          '350',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
+                        FutureBuilder<BigInt>(
+                          future: Blockchain.getBalanceOfSelf(),
+                          builder: (context, balance) {
+                            Widget child;
+                            if (balance.hasData) {
+                              child = Text(
+                                key: ValueKey(0),
+                                balance.requireData.toString(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  )
+                              );
+                            }
+                            else {
+                              child = SizedBox(key: ValueKey(1));
+                            }
+                            return AnimatedSwitcher(
+                              duration: Duration(milliseconds: 100),
+                              reverseDuration: Duration(milliseconds: 100),
+                              child: child
+                            );
+                          }
                         ),
                       ],
                     ),
@@ -84,7 +102,7 @@ class UserProfile extends StatelessWidget {
                             size: 36, color: Colors.white),
                         SizedBox(height: 5),
                         Text(
-                          '200',
+                          Authentication.user.points.toString(),
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
@@ -95,7 +113,6 @@ class UserProfile extends StatelessWidget {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

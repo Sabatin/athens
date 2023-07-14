@@ -19,14 +19,16 @@ class RankingPage extends StatelessWidget {
     return Consumer(
       builder: (BuildContext context, ref, Widget? child) {
         return RefreshIndicator(
-          onRefresh: () async => print('Ciao'),
+          onRefresh: () async => print(''),
           child: ScrollConfiguration(
             behavior: ScrollBehavior(),
             child: FutureBuilder<List<FoodUser>>(
                 future: Database.getTopUsers(),
                 builder: (context, users) {
+                  Widget child;
                   if (users.hasData) {
-                    return ListView.builder(
+                    child = ListView.builder(
+                      key: ValueKey(0),
                       physics: BouncingScrollPhysics(),
                       itemCount: users.requireData.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -50,7 +52,14 @@ class RankingPage extends StatelessWidget {
                       },
                     );
                   }
-                  return LoadingIndicator();
+                  else {
+                    child = SizedBox(key: ValueKey(1));
+                  }
+                  return AnimatedSwitcher(
+                    child: child,
+                    duration: Duration(milliseconds: 150),
+                    reverseDuration: Duration(milliseconds: 150),
+                  );
                 }),
           ),
         );
