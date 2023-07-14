@@ -107,6 +107,7 @@ class _SendTokensScreenState extends State<SendTokens> {
                               await Blockchain.sendTokensTo(this.walletToSend, this.amoutToSend);
                               OverlayLoader.unshowLoading();
                               Navigator.pop(context);
+                              Navigator.pop(context);
                             } catch (e) {
                               OverlayLoader.unshowLoading();
                               Prompt.dialogue(context, 'You don\'t have enough tokens!');
