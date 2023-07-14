@@ -139,7 +139,7 @@ class FoodOrder extends StatelessWidget {
                   child = Clickable(
                     onTap: () async {
                       Routing.slideToPage(context, UnlockWalletScreen(onUnlocked: () async {
-                        await Blockchain.sendTokensTo(food.restaurant!.publicKey, BigInt.from(food.price));
+                        await Blockchain.sendTokensTo(food.restaurant!.publicKey, food.price);
                         final res = await FoodService.buyFood(food, true);
                         Routing.slideToPage(context, OrderSuccess(res));
                       }));
