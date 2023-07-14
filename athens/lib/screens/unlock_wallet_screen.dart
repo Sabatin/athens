@@ -39,6 +39,7 @@ class _UnlockWalletScreenState extends State<UnlockWalletScreen> {
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
+                obscureText: true,
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   hintText: 'Your password',
