@@ -58,20 +58,21 @@ class Blockchain {
     final balance = await client.call(contract: WWTContract, function: WWTContract.function('balanceOf'), params: [EthereumAddress.fromHex(address)]);
     return balance.first as BigInt;
   }
-  static sendTokensTo(String address, BigInt amount) async {
+  static sendTokensTo(String address, int amount) async {
     final client = Web3Client(apiUrl, Client());
     final WWTContract = await getDeployedContract();
     if (credentials == null) {
       throw Exception('No credentials');
     }
-    if (await getBalanceOfSelf() < amount) {
+    BigInt amountInWei = BigInt.from(amount) * BigInt.from(10).pow(18);
+    if (await getBalanceOfSelf() < amountInWei) {
       throw Exception('Insufficient funds');
     }
 
     final transaction = Transaction.callContract(
       contract: WWTContract,
       function: WWTContract.function('transfer'),
-      parameters: [EthereumAddress.fromHex(address), amount],
+      parameters: [EthereumAddress.fromHex(address), amountInWei],
     );
     final response = await client.sendTransaction(credentials, transaction, chainId: chainId);
     return response;
