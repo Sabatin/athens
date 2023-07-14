@@ -37,6 +37,8 @@ class Blockchain {
       'public_key': credentials.address.hex
     });
 
+    Authentication.user.publicKey = credentials.address.hex;
+
     try {
       final Wallet wallet = Wallet.createNew(credentials as EthPrivateKey, password, Random.secure());
 
