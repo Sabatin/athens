@@ -58,7 +58,10 @@ class Blockchain {
     final client = Web3Client(apiUrl, Client());
     final WWTContract = await getDeployedContract();
     final balance = await client.call(contract: WWTContract, function: WWTContract.function('balanceOf'), params: [EthereumAddress.fromHex(address)]);
-    return (balance.first / (BigInt.from(10).pow(18))).toDouble();
+
+    double res = (balance.first / (BigInt.from(10).pow(18))).toDouble();
+  //  return res with precision 2
+    return double.parse(res.toStringAsFixed(2));
   }
   static sendTokensTo(String address, int amount) async {
     final client = Web3Client(apiUrl, Client());
