@@ -54,11 +54,11 @@ class Blockchain {
     credentials = (await Wallet.fromJson(content, password)).privateKey;
   }
 
-  static Future<int> getBalanceOf(String address) async {
+  static Future<double> getBalanceOf(String address) async {
     final client = Web3Client(apiUrl, Client());
     final WWTContract = await getDeployedContract();
     final balance = await client.call(contract: WWTContract, function: WWTContract.function('balanceOf'), params: [EthereumAddress.fromHex(address)]);
-    return (balance.first ~/ (BigInt.from(10).pow(18))).toInt();
+    return (balance.first / (BigInt.from(10).pow(18))).toDouble();
   }
   static sendTokensTo(String address, int amount) async {
     final client = Web3Client(apiUrl, Client());
@@ -81,7 +81,7 @@ class Blockchain {
   }
 
 
-  static Future<int> getBalanceOfSelf() async {
+  static Future<double> getBalanceOfSelf() async {
     return await getBalanceOf(Authentication.user.publicKey);
   }
 }
