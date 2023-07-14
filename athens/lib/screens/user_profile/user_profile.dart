@@ -17,6 +17,7 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.only(top: 8, bottom: 128),
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
