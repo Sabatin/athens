@@ -95,7 +95,9 @@ class Database {
       i++;
     }
 
-    return data.map((e) => FoodUser.fromMap(e)).toList();
+
+
+    return [FoodUser(), ...data.map((e) => FoodUser.fromMap(e)).toList()];
   }
 
 }
