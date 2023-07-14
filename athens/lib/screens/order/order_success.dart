@@ -1,6 +1,8 @@
 import 'package:athens/screens/overview.dart';
+import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/routing.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../constants/theme_model.dart';
 
@@ -32,9 +34,23 @@ class OrderSuccess extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             Text(
-              'Thank you for your order. Your order has been successfully completed.\n Tx of your reward: $res',
+              'Thank you for your order. Your order has been successfully completed.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0),
+            ),
+            Clickable(
+              onTap: () async {
+                try {
+                  launchUrlString(res);
+                } catch(e) {
+
+                }
+              },
+              child: Text(
+                'Click here to see the tx of your reward',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16.0),
+              ),
             ),
             SizedBox(height: 16.0),
             Container(
