@@ -38,6 +38,7 @@ class OrderSuccess extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0),
             ),
+            SizedBox(height: 12),
             Clickable(
               onTap: () async {
                 try {
@@ -49,7 +50,7 @@ class OrderSuccess extends StatelessWidget {
               child: Text(
                 'Click here to see the tx of your reward',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16.0),
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
               ),
             ),
             SizedBox(height: 16.0),
