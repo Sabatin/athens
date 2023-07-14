@@ -18,6 +18,22 @@ class UserProfile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset(
+                  'assets/warriors/${Authentication.user.hero}.jpg',
+                  fit: BoxFit.cover,
+                )
+              )
+            ),
+          ],
+        ),
         Container(
           padding: EdgeInsets.only(left: 20, top: 10, bottom: 5),
           child: Text(
@@ -69,7 +85,7 @@ class UserProfile extends StatelessWidget {
                               );
                             }
                             else {
-                              child = SizedBox(key: ValueKey(1));
+                              child = Text('', key: ValueKey(1));
                             }
                             return AnimatedSwitcher(
                               duration: Duration(milliseconds: 100),
@@ -121,20 +137,8 @@ class UserProfile extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: Icon(Icons.settings_outlined, color: Colors.black),
-                title: Text('Settings'),
-                trailing: Icon(Icons.arrow_forward_ios,
-                    color: Colors.black, size: 20),
-              ),
-              ListTile(
                 leading: Icon(Icons.store_outlined, color: Colors.black),
                 title: Text('Orders'),
-                trailing: Icon(Icons.arrow_forward_ios,
-                    color: Colors.black, size: 20),
-              ),
-              ListTile(
-                leading: Icon(Icons.help_outline, color: Colors.black),
-                title: Text('Help Center'),
                 trailing: Icon(Icons.arrow_forward_ios,
                     color: Colors.black, size: 20),
               ),
