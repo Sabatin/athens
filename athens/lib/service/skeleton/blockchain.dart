@@ -11,11 +11,9 @@ import 'package:web3dart/web3dart.dart';
 
 class Blockchain {
   static late Credentials credentials;
-  static final String apiUrl = 'http://127.0.0.1:8545/';
-  static final String WWTAddress = '0x444Eb467D80B7c1471BC8DA8a671C44c1bC601De';
-  static final int chainId = 56;
-  // static final DeployedContract WWTContract = DeployedContract(ContractAbi.fromJson(WWTABI g, "WWT"), EthereumAddress.fromHex(WWTAddress));
-
+  static final String apiUrl = 'https://rpc.sepolia.org/';
+  static final String WWTAddress = '0x7B717b445Ff27d5769E6a314235bC8D617dc80b9';
+  static final int chainId = 11155111;
 
   static getDeployedContract() async {
     final abiCode = await rootBundle.loadString("assets/ABI/WWT.json");
