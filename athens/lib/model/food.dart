@@ -8,7 +8,7 @@ class Food {
   late final int price;
   late final String id;
   late final String restaurantId;
-  late int reward;
+  late double reward;
   late final String category;
 
   Restaurant? restaurant = null;
@@ -21,8 +21,7 @@ class Food {
     id = foodMap['id'];
     category = foodMap['category'];
     restaurantId = foodMap['restaurant_id'];
-    reward = foodMap['reward'];
-    reward = 0;
+    reward = foodMap['reward'].toDouble();
   }
 
   Future<void> getRestaurant() async {

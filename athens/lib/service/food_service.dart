@@ -26,8 +26,7 @@ class FoodService {
       fadeOutDuration: Duration(milliseconds: 150),
       fadeInCurve: Curves.easeOut,
       fadeOutCurve: Curves.easeOut,
-      image: await Storage.getImageURL(
-          'restaurants/${food.restaurantId}/food/${food.id}'),
+      image: await Storage.getImageURL('restaurants/${food.restaurantId}/food/${food.id}'),
       fit: BoxFit.cover,
     );
   }
