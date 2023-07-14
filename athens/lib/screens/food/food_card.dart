@@ -1,5 +1,6 @@
 import 'package:athens/model/food.dart';
 import 'package:athens/model/utils/athens_strings.dart';
+import 'package:athens/screens/food/food_image.dart';
 import 'package:athens/screens/order/food_order.dart';
 import 'package:athens/screens/utils/clickable.dart';
 import 'package:athens/screens/utils/overlay_loader.dart';
@@ -36,8 +37,7 @@ class FoodCard extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         elevation: 5,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
         child: Container(
           decoration: BoxDecoration(borderRadius: containerRadius),
           alignment: Alignment.centerLeft,
@@ -46,7 +46,7 @@ class FoodCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-                child: RestaurantImage(food.id, 130, width),
+                child: FoodImage(food, 130, width),
               ),
               Container(
                 alignment: Alignment.centerLeft,
