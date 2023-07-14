@@ -24,20 +24,15 @@ class RestaurantScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             expandedHeight: 250,
+            //title: Text(restaurant.name),
             stretch: true,
             elevation: 0,
-            iconTheme: IconThemeData(color: theme.maincolor),
+            iconTheme: IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
             //stretchTriggerOffset: 200, altezza a cui triggherare la funzione onStretchTrigger
             flexibleSpace: FlexibleSpaceBar(
-              stretchModes: [
-                StretchMode.zoomBackground,
-                StretchMode.fadeTitle,
-              ],
               background: ClipRRect(
-                borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(40)),
-                child: RestaurantImage(restaurant.id, 130, width),
+                child: RestaurantImage(restaurant.id, 300, width),
               ),
             ),
           ),

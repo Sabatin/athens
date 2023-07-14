@@ -13,6 +13,7 @@ class Blockchain {
   static late Credentials credentials;
   static final String apiUrl = 'http://127.0.0.1:8545/';
   static final String WWTAddress = '0x444Eb467D80B7c1471BC8DA8a671C44c1bC601De';
+  static final int chainId = 56;
   // static final DeployedContract WWTContract = DeployedContract(ContractAbi.fromJson(WWTABI g, "WWT"), EthereumAddress.fromHex(WWTAddress));
 
 
@@ -53,14 +54,33 @@ class Blockchain {
     credentials = (await Wallet.fromJson(content, password)).privateKey;
   }
 
-  static getBalanceOf(String address) async {
+  static Future<BigInt> getBalanceOf(String address) async {
     final client = Web3Client(apiUrl, Client());
     final WWTContract = await getDeployedContract();
     final balance = await client.call(contract: WWTContract, function: WWTContract.function('balanceOf'), params: [EthereumAddress.fromHex(address)]);
-    return balance;
+    return balance.first as BigInt;
+  }
+  static sendTokensTo(String address, BigInt amount) async {
+    final client = Web3Client(apiUrl, Client());
+    final WWTContract = await getDeployedContract();
+    if (credentials == null) {
+      throw Exception('No credentials');
+    }
+    if (await getBalanceOfSelf() < amount) {
+      throw Exception('Insufficient funds');
+    }
+
+    final transaction = Transaction.callContract(
+      contract: WWTContract,
+      function: WWTContract.function('transfer'),
+      parameters: [EthereumAddress.fromHex(address), amount],
+    );
+    final response = await client.sendTransaction(credentials, transaction, chainId: chainId);
+    return response;
   }
 
-  static getBalanceOfSelf() async {
+
+  static Future<BigInt>  getBalanceOfSelf() async {
     if (credentials == null) {
      throw Exception('No credentials');
     }
